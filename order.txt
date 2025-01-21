@@ -1,0 +1,7 @@
+curl -X 'PUT' \
+'http://localhost:8000/users/01JJ1BM0E9P92AZSRRT7BNVFJC' \
+-H 'accept: application/json' \
+-H 'Content-Type: application/json' \
+-d '{
+    "name": "Dexter New"
+}'
