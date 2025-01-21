@@ -26,3 +26,6 @@ alembic = "^1.14.1"
 dependency-injector = "^4.45.0"
 bcrypt = "3.2.0"
 passlib = "^1.7.4"
+pydantic = {extras = ["email"], version = "^2.10.5"}
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+python-multipart = "^0.0.20"

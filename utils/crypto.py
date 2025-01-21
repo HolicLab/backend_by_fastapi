@@ -8,5 +8,5 @@ class Crypto:
         return self.pwd_context.hash(secret)
     
     def verify(self, secret, hash):
-        return self.pwed_context.verify(secret, hash)
+        return self.pwd_context.verify(secret, hash)
     
