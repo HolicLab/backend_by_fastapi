@@ -3,6 +3,7 @@ from fastapi.requests import Request
 from fastapi.responses import JSONResponse
 from user.interface.controllers.user_controller import router as user_routers
 from note.interface.controllers.note_controller import router as note_routers
+from middlewares import create_middlewares
 from fastapi import FastAPI
 from containers import Container
 import uvicorn
@@ -11,6 +12,8 @@ app = FastAPI()
 app.container = Container()
 app.include_router(user_routers)
 app.include_router(note_routers)
+
+create_middlewares(app)
 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(

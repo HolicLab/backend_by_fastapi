@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import BackgroundTasks, APIRouter, Depends
 from fastapi.security import OAuth2PasswordRequestForm
 from pydantic import BaseModel, EmailStr, Field
 from typing import Annotated
@@ -27,11 +27,13 @@ class UserResponse(BaseModel):
 @router.post("", status_code=201)
 @inject
 def create_user(
-    user: CreateUserBody, 
+    user: CreateUserBody,
+    # background_tasks: BackgroundTasks,
     user_service: UserService = Depends(Provide[Container.user_service]),
     # user_service: UserService = Depends(Provide["user_service"])
 ) -> UserResponse:
     created_user = user_service.create_user(
+        # background_tasks=background_tasks,
         name=user.name,
         email=user.email,
         password=user.password

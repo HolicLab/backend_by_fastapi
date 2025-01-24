@@ -1,21 +1,33 @@
-from fastapi import HTTPException, Depends, status
+from fastapi import BackgroundTasks, HTTPException, Depends, status
 from ulid import ULID
 from datetime import datetime
 from user.domain.user import User
 from user.domain.repository.user_repo import IUserRepository
+from user.application.email_service import EmailService
+from user.application.send_welcome_email_task import SendWelcomeEmailTask
 from utils.crypto import Crypto
 from dependency_injector.wiring import inject, Provide
 from fastapi import Depends
 from common.auth import Role, create_access_token
 
+
 class UserService:
     @inject
-    def __init__(self, user_repo: IUserRepository):
+    def __init__(self, user_repo: IUserRepository, email_service: EmailService):
         self.user_repo = user_repo
         self.ulid = ULID()
         self.crypto = Crypto()
+        self.email_service = email_service
+        
 
-    def create_user(self, name: str, email: str, password: str, memo: str | None = None):
+    def create_user(
+        self, 
+        # background_tasks: BackgroundTasks, 
+        name: str, 
+        email: str, 
+        password: str, 
+        memo: str | None = None
+    ):
         _user = None
 
         try:
@@ -38,6 +50,11 @@ class UserService:
             updated_at=now,
         )
         self.user_repo.save(user)
+
+        SendWelcomeEmailTask().run(user.email)
+        # background_tasks.add_task(
+        #     self.email_service.send_email, user.email
+        # )
         return user
     
     def update_user(
