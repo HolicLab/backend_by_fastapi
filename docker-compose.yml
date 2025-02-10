@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  mysql-docker:
+    image: mysql:8.0
+    volumes:
+      - mysqlvolume:/var/lib/mysql
+    restart: always
+    ports:
+      - "3306:3306/tcp"
+    environment:
+      MYSQL_ROOT_PASSWORD: root1234
+      MYSQL_DATABASE: fastapi
+      MYSQL_USER: ubuntu
+      MYSQL_PASSWORD: ubuntu1234
+volumes:
+  mysqlvolume:
