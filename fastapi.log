@@ -1,0 +1,31 @@
+nohup: ignoring input
+INFO:     Will watch for changes in these directories: ['/home/ubuntu/backend_by_fastapi']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [4418] using WatchFiles
+INFO:     Started server process [4436]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+2025-02-12 04:16:51,619 common.logger INFO:	user: None: http://15.165.81.57:8000/docs
+INFO:     112.154.119.66:62345 - "GET /docs HTTP/1.1" 200 OK
+2025-02-12 04:16:51,832 common.logger INFO:	user: None: http://15.165.81.57:8000/openapi.json
+INFO:     112.154.119.66:62345 - "GET /openapi.json HTTP/1.1" 200 OK
+2025-02-12 04:16:59,207 common.logger INFO:	user: None: http://15.165.81.57:8000/redoc
+INFO:     112.154.119.66:62355 - "GET /redoc HTTP/1.1" 200 OK
+2025-02-12 04:16:59,572 common.logger INFO:	user: None: http://15.165.81.57:8000/openapi.json
+INFO:     112.154.119.66:62355 - "GET /openapi.json HTTP/1.1" 200 OK
+2025-02-12 04:56:09,655 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     205.210.31.18:64082 - "GET / HTTP/1.1" 404 Not Found
+2025-02-12 05:14:34,543 common.logger INFO:	user: None: http://15.165.81.57:8000/docs
+INFO:     222.118.182.219:35216 - "GET /docs HTTP/1.1" 200 OK
+2025-02-12 05:14:34,809 common.logger INFO:	user: None: http://15.165.81.57:8000/openapi.json
+INFO:     222.118.182.219:35216 - "GET /openapi.json HTTP/1.1" 200 OK
+2025-02-12 05:16:01,811 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     222.118.182.219:37361 - "POST /users HTTP/1.1" 201 Created
+2025-02-12 05:16:23,841 common.logger INFO:	user: None: http://15.165.81.57:8000/users?page=1&items_per_page=10
+INFO:     222.118.182.219:37483 - "GET /users?page=1&items_per_page=10 HTTP/1.1" 200 OK
+2025-02-12 05:16:52,778 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     222.118.182.219:38924 - "POST /users/login HTTP/1.1" 200 OK
+2025-02-12 05:17:23,730 common.logger INFO:	user: 01JKW9BTET7KDH4P3WE0QNFH3Y(USER): http://15.165.81.57:8000/users
+INFO:     222.118.182.219:38954 - "PUT /users HTTP/1.1" 200 OK
+2025-02-12 05:17:40,543 common.logger INFO:	user: 01JKW9BTET7KDH4P3WE0QNFH3Y(USER): http://15.165.81.57:8000/users
+INFO:     222.118.182.219:40105 - "DELETE /users HTTP/1.1" 204 No Content

@@ -11,10 +11,13 @@ from user.application.email_service import EmailService
 
 class Container(containers.DeclarativeContainer):
     wiring_config = containers.WiringConfiguration(
+        # 의존성을 사용할 모듈을 선언한다.
         packages=["user", "note"],
     )
 
+    # 의존성을 제공할 모듈을 팩토리에 등록한다.
     user_repo = providers.Factory(UserRepository)
+    # UserService 생성자로 전달될 user_repo 객체 역시 컨테이너에 있는 팩토리로 선언한다.
     user_service = providers.Factory(UserService, user_repo=user_repo)
 
     note_repo = providers.Factory(NoteRepository)

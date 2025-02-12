@@ -64,8 +64,8 @@ class UserRepository(IUserRepository):
             query = db.query(User)
             total_count = query.count()
 
-            offset = (page - 1) * items_per_page
-            users = query.limit(items_per_page).offset(offset).all()
+            offset = (page - 1) * items_per_page                        # 몇 개의 데이터를 건너뛸지를 계산
+            users = query.limit(items_per_page).offset(offset).all()    # limit로 페이지에 표시할 만큼만 조회한다.
 
         return total_count, [UserVO(**row_to_dict(user)) for user in users]
         

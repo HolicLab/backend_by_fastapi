@@ -12,6 +12,9 @@ from common.auth import Role, create_access_token
 
 
 class UserService:
+    # @inject 데커레이터를 명시해 주입받은 객체를 사용한다고 선언한다.
+    # 컨테이너에 직접 user_repo 팩토리를 선언해두었기 때문에 타입 선언만으로도 
+    # UserService가 생성될 때 팩토리를 수행한 객체가 주입된다.
     @inject
     def __init__(self, user_repo: IUserRepository, email_service: EmailService):
         self.user_repo = user_repo
@@ -28,14 +31,14 @@ class UserService:
         password: str, 
         memo: str | None = None
     ):
-        _user = None
+        _user = None        # 데이터베이스에서 찾은 유저 변수
 
         try:
             _user = self.user_repo.find_by_email(email)
         except HTTPException as e:
             if e.status_code != 422:
                 raise e
-
+        # 가입한 유저일 경우 422에러를 발생시킨다.
         if _user:
             raise HTTPException(status_code=422)
 
@@ -51,7 +54,8 @@ class UserService:
         )
         self.user_repo.save(user)
 
-        SendWelcomeEmailTask().run(user.email)
+        # SendWelcomeEmailTask().run(user.email)
+        
         # background_tasks.add_task(
         #     self.email_service.send_email, user.email
         # )
@@ -84,8 +88,10 @@ class UserService:
         self.user_repo.delete(user_id)
 
     def login(self, email: str, password: str):
+        # 가입한 유저를 찾는다.
         user = self.user_repo.find_by_email(email)
 
+        # 전달받은 패스워드와 데이터베이스에 저장된 패스워드와 비교해 유효성 검증
         if not self.crypto.verify(password, user.password):
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
         

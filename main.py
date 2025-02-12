@@ -11,10 +11,11 @@ import uvicorn
 app = FastAPI()
 app.container = Container()
 app.include_router(user_routers)
-app.include_router(note_routers)
+# app.include_router(note_routers)
 
 create_middlewares(app)
 
+# 422 에러를 400에러로 변환
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(
     request: Request,

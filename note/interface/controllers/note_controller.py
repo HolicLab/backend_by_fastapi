@@ -49,7 +49,7 @@ def create_note(
         tag_names=body.tags if body.tags else [],
     )
 
-    response = asdict(note)
+    response = asdict(note)     # 딕셔너리로 변환
     response.update({"tags": [tag.name for tag in note.tags]})
 
     return response
