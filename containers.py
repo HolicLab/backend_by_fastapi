@@ -6,13 +6,16 @@ from note.application.note_service import NoteService
 from user.infra.repository.user_repo import UserRepository
 from note.infra.repository.note_repo import NoteRepository
 
+from study.infra.repository.study_repo import StudyRepository
+from study.application.study_service import StudyService
+
 from fastapi import BackgroundTasks
 from user.application.email_service import EmailService
 
 class Container(containers.DeclarativeContainer):
     wiring_config = containers.WiringConfiguration(
         # 의존성을 사용할 모듈을 선언한다.
-        packages=["user", "note"],
+        packages=["user", "note", "study"],
     )
 
     # 의존성을 제공할 모듈을 팩토리에 등록한다.
@@ -22,6 +25,9 @@ class Container(containers.DeclarativeContainer):
 
     note_repo = providers.Factory(NoteRepository)
     note_service = providers.Factory(NoteService, note_repo=note_repo)
+
+    study_repo = providers.Factory(StudyRepository)
+    study_service = providers.Factory(StudyService, study_repo=study_repo)
 
     email_service = providers.Factory(EmailService)
     user_service = providers.Factory(

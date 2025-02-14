@@ -29,3 +29,8 @@ INFO:     222.118.182.219:38924 - "POST /users/login HTTP/1.1" 200 OK
 INFO:     222.118.182.219:38954 - "PUT /users HTTP/1.1" 200 OK
 2025-02-12 05:17:40,543 common.logger INFO:	user: 01JKW9BTET7KDH4P3WE0QNFH3Y(USER): http://15.165.81.57:8000/users
 INFO:     222.118.182.219:40105 - "DELETE /users HTTP/1.1" 204 No Content
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [4436]
+INFO:     Stopping reloader process [4418]
