@@ -16,7 +16,7 @@ class StudyRepository(IStudy):
         raise NotImplementedError
     
     def update_session(self, user_id:str, session: StudySession) -> StudySession:
-        rais NotImplementedError
+        raise NotImplementedError
 
     def save_data(self, user_id:str, data: StudyData) -> StudyData:
         raise NotImplementedError

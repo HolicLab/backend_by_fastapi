@@ -1,12 +1,12 @@
 from fastapi import APIRouter, Depends
 from pydantic import BaseModel, Field
-from dependency_injector.wiring import inject, providers
+from dependency_injector.wiring import inject, Provide
 from datetime import datetime
 from typing import Annotated
 from dataclasses import asdict
 
 from common.auth import CurrentUser, get_current_user
-from containsers import Container
+from containers import Container
 from study.application.study_service import StudyService
 
 
@@ -47,7 +47,7 @@ def create_session(
 # 세션 종료 요청에 대한 파이단틱 모델
 class CompleteSessionResponse(BaseModel):
     id: str = Field(min_length=1, max_length=36),
-    avg_focus : float
+    avg_focus : float | None = None
     end_time: str = Field(min_length=1, max_length=30)
 
 # POST /study/session/end (학습 세션 종료)
@@ -61,8 +61,8 @@ def complete_session(
     session = study_service.complete_session(
         id = body.id,
         user_id = current_user.id,
+        end_time = body.end_time,
         avg_focus = body.avg_focus,
-        end_time = body.end_time
     )
     response = asdict(session)
     return session
@@ -116,7 +116,7 @@ class GetSessionResponse(BaseModel):
 def get_sessions(
     page: int = 1,
     items_per_page: int = 10,
-    current_user: Annotated[CurrentUser, Depends(get_current_user)],
+    current_user: CurrentUser = Depends(get_current_user),
     study_service: StudyService = Depends(Provide[Container.study_service])
 ):
     total_count, sessions = study_service.get_sessions(
@@ -144,7 +144,7 @@ class GetDataResponse(BaseModel):
 @router.get("/data/{session_id}", response_model=GetDataResponse)
 @inject
 def get_datas(
-    session_id: str
+    session_id: str,
     current_user: Annotated[CurrentUser, Depends(get_current_user)],
     study_service: StudyService = Depends(Provide[Container.study_service])
 ):

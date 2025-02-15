@@ -20,7 +20,7 @@ class IStudy(metaclass=ABCMeta):
 
     @abstractmethod
     def update_session(self, user_id:str, session: StudySession) -> StudySession:
-        rais NotImplementedError
+        raise NotImplementedError
     
     @abstractmethod
     def save_data(self, user_id:str, data: StudyData) -> StudyData:

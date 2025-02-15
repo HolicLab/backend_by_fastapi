@@ -2,6 +2,7 @@ from ulid import ULID
 from study.domain.study import StudySession, StudyData
 from study.domain.repository.study_repo import IStudy
 from datetime import datetime
+from typing import Optional
 
 class StudyService:
     def __init__(self, study_repo: IStudy):
@@ -18,11 +19,11 @@ class StudyService:
         return self.study_repo.get_sessions(
             user_id = user_id, 
             page = page, 
-            items_per_page = items_per_page
+            items_per_page = items_per_page,
         )
     
     # 사용자의 특정 세션의 세부데이터를 가져온다.
-    def get_datas(self, user_id: str, session_id: str) -> List[StudyData]:
+    def get_datas(self, user_id: str, session_id: str) -> list[StudyData]:
         return self.study_repo.find_datas_by_session_id(user_id = user_id, session = session_id)    
         
     
@@ -55,8 +56,8 @@ class StudyService:
         self,
         id: str,
         user_id: str,
-        avg_focus: float | None = None,
-        end_time: str
+        end_time: str,
+        avg_focus: Optional[float] = None,
     ):
         session = self.study_repo.find_session_by_id(user_id = user_id, session_id = id)
 
