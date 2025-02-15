@@ -31,9 +31,7 @@ class StudyService:
         self,
         user_id: str,
         subject: str,
-        avg_focus: float,
         start_time: datetime,
-        end_time: datetime,
     )-> StudySession:
         now = datetime.now()
 
@@ -41,16 +39,35 @@ class StudyService:
             id = self.ulid.generate(),
             user_id = user_id,
             subject = subject,
-            avg_focus = avg_focus,
+            avg_focus = None,
             start_time = start_time,
-            end_time = end_time,
-            created_at = now
+            end_time = None,
+            created_at = now,
+            updated_at = now,
         )
 
         self.study_repo.save_session(user_id = user_id, session = session)
-
+        
         return session
     
+    # 학습 세션 종료
+    def complete_session(
+        self,
+        id: str,
+        user_id: str,
+        avg_focus: float | None = None,
+        end_time: str
+    ):
+        session = self.study_repo.find_session_by_id(user_id = user_id, session_id = id)
+
+        session.updated_at = datetime.now()
+        session.avg_focus = avg_focus
+        session.end_time = end_time
+
+        self.user_repo.update_session(user_id = user_id, session = session)
+
+        return session
+
     # ppg 데이터 생성
     def create_data(
         self,
@@ -58,7 +75,7 @@ class StudyService:
         session_id: str,
         ppg_value: float,
         focus_score: float,
-        time: datetime,
+        time: str,
     ) -> StudyData:
         now = datetime.now()
 

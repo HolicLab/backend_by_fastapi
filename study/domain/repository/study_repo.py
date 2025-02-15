@@ -11,8 +11,16 @@ class IStudy(metaclass=ABCMeta):
         raise NotImplementedError
 
     @abstractmethod
+    def find_session_by_id(self, user_id: str, session_id: str) -> StudySession:
+        raise NotImplementedError
+
+    @abstractmethod
     def save_session(self, user_id:str, session: StudySession) -> StudySession:
         raise NotImplementedError
+
+    @abstractmethod
+    def update_session(self, user_id:str, session: StudySession) -> StudySession:
+        rais NotImplementedError
     
     @abstractmethod
     def save_data(self, user_id:str, data: StudyData) -> StudyData:
@@ -21,3 +29,4 @@ class IStudy(metaclass=ABCMeta):
     @abstractmethod
     def delete_session(self, user_id:str, session_id: str) -> StudySession:
         raise NotImplementedError
+    

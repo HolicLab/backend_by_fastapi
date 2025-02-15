@@ -9,11 +9,18 @@ class StudyRepository(IStudy):
     def find_datas_by_session_id(self, user_id: str, session_id: str) -> list[StudyData]:
         raise NotImplementedError
 
+    def find_session_by_id(self, user_id: str, session_id: str) -> StudySession:
+        raise NotImplementedError
+
     def save_session(self, user_id:str, session: StudySession) -> StudySession:
         raise NotImplementedError
     
+    def update_session(self, user_id:str, session: StudySession) -> StudySession:
+        rais NotImplementedError
+
     def save_data(self, user_id:str, data: StudyData) -> StudyData:
         raise NotImplementedError
 
     def delete_session(self, user_id:str, session_id: str) -> StudySession:
         raise NotImplementedError
+
