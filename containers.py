@@ -13,10 +13,10 @@ from fastapi import BackgroundTasks
 from user.application.email_service import EmailService
 
 class Container(containers.DeclarativeContainer):
-    wiring_config = containers.WiringConfiguration(
-        # 의존성을 사용할 모듈을 선언한다.
-        packages=["user", "note", "study"],
-    )
+    # wiring_config = containers.WiringConfiguration(
+    #     # 의존성을 사용할 모듈을 선언한다.
+    #     packages=["user", "note", "study"],
+    # )
 
     # 의존성을 제공할 모듈을 팩토리에 등록한다.
     user_repo = providers.Factory(UserRepository)
