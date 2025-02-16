@@ -82,7 +82,6 @@ class StudyService:
 
         data = StudyData(
             id = self.ulid.generate(),
-            user_id = user_id,
             session_id = session_id,
             ppg_value = ppg_value,
             focus_score = focus_score,

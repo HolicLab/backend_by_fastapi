@@ -1,0 +1,354 @@
+INFO:     Will watch for changes in these directories: ['/home/ubuntu/backend_by_fastapi']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [9330] using WatchFiles
+INFO:     Started server process [9339]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+2025-02-15 07:33:22,761 common.logger INFO:	user: None: http://15.165.81.57:8000/docs
+INFO:     112.154.119.66:59916 - "GET /docs HTTP/1.1" 200 OK
+2025-02-15 07:33:23,003 common.logger INFO:	user: None: http://15.165.81.57:8000/openapi.json
+/home/ubuntu/.cache/pypoetry/virtualenvs/fastapi-server-LNSPnSFC-py3.12/lib/python3.12/site-packages/pydantic/json_schema.py:2279: PydanticJsonSchemaWarning: Default value (FieldInfo(annotation=NoneType, required=True, metadata=[MinLen(min_length=1), MaxLen(max_length=36)]),) is not JSON serializable; excluding default from JSON schema [non-serializable-default]
+  warnings.warn(message, PydanticJsonSchemaWarning)
+INFO:     112.154.119.66:59916 - "GET /openapi.json HTTP/1.1" 200 OK
+2025-02-15 07:33:27,548 common.logger INFO:	user: None: http://15.165.81.57:8000/redoc
+INFO:     112.154.119.66:59920 - "GET /redoc HTTP/1.1" 200 OK
+2025-02-15 07:33:27,933 common.logger INFO:	user: None: http://15.165.81.57:8000/openapi.json
+INFO:     112.154.119.66:59920 - "GET /openapi.json HTTP/1.1" 200 OK
+2025-02-15 07:34:18,918 common.logger INFO:	user: None: http://15.165.81.57:8000/docs
+INFO:     112.154.119.66:59957 - "GET /docs HTTP/1.1" 200 OK
+2025-02-15 07:34:19,048 common.logger INFO:	user: None: http://15.165.81.57:8000/openapi.json
+INFO:     112.154.119.66:59957 - "GET /openapi.json HTTP/1.1" 200 OK
+2025-02-15 07:34:43,813 common.logger INFO:	user: None: http://15.165.81.57/redoc
+INFO:     27.0.238.187:53054 - "GET /redoc HTTP/1.1" 200 OK
+2025-02-15 07:36:03,951 common.logger INFO:	user: None: http://15.165.81.57:8000/redoc
+INFO:     112.154.119.66:60006 - "GET /redoc HTTP/1.1" 200 OK
+2025-02-15 07:36:04,192 common.logger INFO:	user: None: http://15.165.81.57:8000/openapi.json
+INFO:     112.154.119.66:60006 - "GET /openapi.json HTTP/1.1" 200 OK
+2025-02-15 07:41:09,846 common.logger INFO:	user: None: http://15.165.81.57:8000/docs
+INFO:     112.166.74.44:64291 - "GET /docs HTTP/1.1" 200 OK
+2025-02-15 07:41:10,112 common.logger INFO:	user: None: http://15.165.81.57:8000/openapi.json
+INFO:     112.166.74.44:64291 - "GET /openapi.json HTTP/1.1" 200 OK
+2025-02-15 07:41:30,713 common.logger INFO:	user: None: http://15.165.81.57:8000/docs
+INFO:     112.166.74.44:64290 - "GET /docs HTTP/1.1" 200 OK
+2025-02-15 07:41:30,983 common.logger INFO:	user: None: http://15.165.81.57:8000/openapi.json
+INFO:     112.166.74.44:64290 - "GET /openapi.json HTTP/1.1" 200 OK
+2025-02-15 09:42:24,977 common.logger INFO:	user: None: http://15.165.81.57/redoc
+INFO:     27.0.238.68:45604 - "GET /redoc HTTP/1.1" 200 OK
+2025-02-15 10:00:08,231 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:51432 - "POST /users HTTP/1.1" 400 Bad Request
+2025-02-15 10:00:14,114 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:51434 - "POST /users HTTP/1.1" 400 Bad Request
+2025-02-15 10:00:23,127 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:51437 - "POST /users HTTP/1.1" 400 Bad Request
+2025-02-15 10:00:31,417 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:51440 - "POST /users HTTP/1.1" 201 Created
+2025-02-15 10:00:46,099 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:51444 - "POST /users/login HTTP/1.1" 200 OK
+2025-02-15 10:01:05,447 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:51452 - "POST /users/login HTTP/1.1" 200 OK
+2025-02-15 10:09:12,504 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     45.156.129.131:38931 - "GET / HTTP/1.1" 404 Not Found
+2025-02-15 10:09:51,823 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:51659 - "POST /users/login HTTP/1.1" 200 OK
+2025-02-15 10:09:52,163 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:51659 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 10:11:00,352 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:51684 - "POST /users/login HTTP/1.1" 200 OK
+2025-02-15 10:11:00,683 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:51684 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 10:11:07,131 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:51696 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 10:11:25,144 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:51701 - "PUT /users HTTP/1.1" 401 Unauthorized
+2025-02-15 10:22:04,564 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:51932 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 10:22:21,249 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:51936 - "PUT /users HTTP/1.1" 401 Unauthorized
+2025-02-15 10:51:57,572 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:52577 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 10:52:05,970 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:52580 - "PUT /users HTTP/1.1" 401 Unauthorized
+2025-02-15 10:57:01,735 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:52684 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 10:57:11,238 common.logger INFO:	user: 01JM4GTXNNCKSQ0CEXZYQX7QGB(USER): http://15.165.81.57:8000/users
+INFO:     112.166.74.44:52688 - "PUT /users HTTP/1.1" 400 Bad Request
+2025-02-15 11:08:05,703 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     13.64.107.205:59360 - "GET / HTTP/1.1" 404 Not Found
+2025-02-15 11:16:25,176 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     64.62.197.71:45537 - "GET / HTTP/1.1" 404 Not Found
+2025-02-15 11:16:40,928 common.logger INFO:	user: None: http://15.165.81.57:8000/favicon.ico
+INFO:     64.62.197.66:39353 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2025-02-15 11:16:44,029 common.logger INFO:	user: None: http://api.ipify.org/?format=json
+INFO:     64.62.197.68:54645 - "GET /?format=json HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+2025-02-15 11:53:08,891 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54001 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 11:53:45,286 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54017 - "POST /users/login HTTP/1.1" 200 OK
+2025-02-15 11:53:45,599 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54017 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 11:53:49,504 common.logger INFO:	user: 01JM4GTXNNCKSQ0CEXZYQX7QGB(USER): http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54017 - "PUT /users HTTP/1.1" 200 OK
+2025-02-15 11:54:05,818 common.logger INFO:	user: 01JM4GTXNNCKSQ0CEXZYQX7QGB(USER): http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54024 - "PUT /users HTTP/1.1" 200 OK
+2025-02-15 11:54:14,231 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54037 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 11:58:43,429 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54132 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 11:59:05,321 common.logger INFO:	user: 01JM4GTXNNCKSQ0CEXZYQX7QGB(USER): http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54138 - "PUT /users HTTP/1.1" 200 OK
+2025-02-15 11:59:22,364 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54143 - "POST /users/login HTTP/1.1" 200 OK
+2025-02-15 11:59:22,670 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54143 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 11:59:33,832 common.logger INFO:	user: 01JM4GTXNNCKSQ0CEXZYQX7QGB(USER): http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54146 - "PUT /users HTTP/1.1" 200 OK
+2025-02-15 12:08:09,607 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54333 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 12:08:43,097 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54350 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 12:08:49,640 common.logger INFO:	user: 01JM4GTXNNCKSQ0CEXZYQX7QGB(USER): http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54356 - "PUT /users HTTP/1.1" 200 OK
+2025-02-15 12:09:08,349 common.logger INFO:	user: 01JM4GTXNNCKSQ0CEXZYQX7QGB(USER): http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54361 - "DELETE /users HTTP/1.1" 204 No Content
+2025-02-15 12:09:26,828 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54369 - "POST /users/login HTTP/1.1" 422 Unprocessable Entity
+2025-02-15 12:09:40,441 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54373 - "POST /users HTTP/1.1" 201 Created
+2025-02-15 12:09:52,215 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54376 - "POST /users/login HTTP/1.1" 200 OK
+2025-02-15 12:09:52,536 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54376 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 12:09:57,240 common.logger INFO:	user: 01JM4R7CAVXRBQ0PZ4M3MVKZKB(USER): http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54376 - "PUT /users HTTP/1.1" 200 OK
+2025-02-15 12:10:12,923 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54382 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:10:15,146 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54382 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:10:22,495 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54385 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:10:29,108 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54387 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:10:30,367 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+2025-02-15 12:10:30,560 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54387 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:10:30,716 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54389 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:10:31,043 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54387 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:10:31,261 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54389 - "POST /users/login HTTP/1.1" 401 Unauthorized
+INFO:     112.166.74.44:54387 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:10:41,216 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54394 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:10:59,188 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54403 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:11:02,660 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54403 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:13:01,197 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54439 - "POST /users HTTP/1.1" 422 Unprocessable Entity
+2025-02-15 12:13:04,750 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54439 - "POST /users HTTP/1.1" 422 Unprocessable Entity
+2025-02-15 12:13:16,987 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54451 - "POST /users HTTP/1.1" 422 Unprocessable Entity
+2025-02-15 12:13:30,119 common.logger INFO:	user: None: http://15.165.81.57/docs
+INFO:     27.0.238.186:52032 - "GET /docs HTTP/1.1" 200 OK
+2025-02-15 12:13:30,187 common.logger INFO:	user: None: http://15.165.81.57/redoc
+INFO:     27.0.238.187:58058 - "GET /redoc HTTP/1.1" 200 OK
+2025-02-15 12:13:34,544 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54455 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:13:37,337 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54455 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:13:46,970 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54459 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:13:51,736 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54459 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:13:59,276 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54464 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:14:07,389 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54467 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:14:11,177 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54467 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:14:18,878 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54474 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:17:19,941 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54571 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:17:25,592 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54574 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:17:35,286 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54577 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:17:45,533 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54580 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:17:52,154 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54582 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:17:55,756 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54582 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:18:02,932 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54592 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:18:05,286 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54592 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:18:07,759 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54592 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:18:34,682 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54603 - "POST /users HTTP/1.1" 201 Created
+2025-02-15 12:18:57,591 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54608 - "POST /users/login HTTP/1.1" 200 OK
+2025-02-15 12:18:57,913 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54608 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 12:19:03,133 common.logger INFO:	user: 01JM4RQP1X1HHPK3PGHNK1FCHQ(USER): http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54610 - "PUT /users HTTP/1.1" 200 OK
+2025-02-15 12:19:14,524 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54625 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 12:19:39,913 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54631 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:19:58,865 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54636 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:20:06,094 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54638 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:20:32,167 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54645 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:20:34,351 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54645 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:20:35,128 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54645 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:20:35,367 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54647 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:20:37,273 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54645 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:21:00,421 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54654 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:21:06,864 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54656 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:21:33,597 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54663 - "POST /users HTTP/1.1" 422 Unprocessable Entity
+2025-02-15 12:21:48,438 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54667 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:21:55,124 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54670 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:22:02,843 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54675 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:22:05,537 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54675 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:22:54,459 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54687 - "POST /users HTTP/1.1" 201 Created
+2025-02-15 12:23:06,011 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54696 - "POST /users/login HTTP/1.1" 200 OK
+2025-02-15 12:23:06,323 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54696 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 12:25:51,879 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54756 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 12:26:44,307 common.logger INFO:	user: 01JM4RZKQYFWJF5CS278Y3QVDJ(USER): http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54771 - "PUT /users HTTP/1.1" 200 OK
+2025-02-15 12:27:17,812 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54782 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:27:24,938 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54784 - "POST /users/login HTTP/1.1" 401 Unauthorized
+2025-02-15 12:28:03,881 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54795 - "POST /users/login HTTP/1.1" 400 Bad Request
+2025-02-15 12:28:05,151 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54795 - "POST /users/login HTTP/1.1" 400 Bad Request
+2025-02-15 12:29:50,107 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54830 - "POST /users/login HTTP/1.1" 400 Bad Request
+2025-02-15 12:29:53,524 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54830 - "POST /users/login HTTP/1.1" 400 Bad Request
+2025-02-15 12:32:41,886 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54902 - "POST /users/login HTTP/1.1" 200 OK
+2025-02-15 12:32:42,248 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54902 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 12:32:46,459 common.logger INFO:	user: 01JM4R7CAVXRBQ0PZ4M3MVKZKB(USER): http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54902 - "DELETE /users HTTP/1.1" 204 No Content
+2025-02-15 12:32:56,211 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54906 - "POST /users/login HTTP/1.1" 422 Unprocessable Entity
+2025-02-15 12:33:04,349 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54909 - "POST /users/login HTTP/1.1" 200 OK
+2025-02-15 12:33:04,663 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54909 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 12:33:08,613 common.logger INFO:	user: 01JM4RQP1X1HHPK3PGHNK1FCHQ(USER): http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54909 - "DELETE /users HTTP/1.1" 204 No Content
+2025-02-15 12:33:18,508 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:54917 - "POST /users/login HTTP/1.1" 200 OK
+2025-02-15 12:33:18,815 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54917 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 12:33:23,415 common.logger INFO:	user: 01JM4RZKQYFWJF5CS278Y3QVDJ(USER): http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54917 - "DELETE /users HTTP/1.1" 204 No Content
+2025-02-15 12:36:37,503 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:54996 - "POST /users HTTP/1.1" 201 Created
+2025-02-15 12:36:53,101 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:55000 - "POST /users/login HTTP/1.1" 200 OK
+2025-02-15 12:36:53,447 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:55000 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 12:36:57,765 common.logger INFO:	user: 01JM4SRQGH7N8KM3QCGD8F5WPA(USER): http://15.165.81.57:8000/users
+INFO:     112.166.74.44:55000 - "PUT /users HTTP/1.1" 200 OK
+2025-02-15 12:37:17,825 common.logger INFO:	user: 01JM4SRQGH7N8KM3QCGD8F5WPA(USER): http://15.165.81.57:8000/users
+INFO:     112.166.74.44:55008 - "PUT /users HTTP/1.1" 200 OK
+2025-02-15 12:37:33,541 common.logger INFO:	user: 01JM4SRQGH7N8KM3QCGD8F5WPA(USER): http://15.165.81.57:8000/users
+INFO:     112.166.74.44:55012 - "PUT /users HTTP/1.1" 200 OK
+2025-02-15 12:37:48,665 common.logger INFO:	user: None: http://15.165.81.57:8000/users/login
+INFO:     112.166.74.44:55018 - "POST /users/login HTTP/1.1" 200 OK
+2025-02-15 12:37:48,979 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:55018 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 12:37:54,598 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:55029 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 12:39:05,657 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:55075 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 12:59:18,678 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:55529 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 12:59:50,258 common.logger INFO:	user: 01JM4SRQGH7N8KM3QCGD8F5WPA(USER): http://15.165.81.57:8000/users
+INFO:     112.166.74.44:55536 - "PUT /users HTTP/1.1" 200 OK
+2025-02-15 13:48:56,851 common.logger INFO:	user: None: http://15.165.81.57:8000/users
+INFO:     112.166.74.44:56900 - "GET /users HTTP/1.1" 200 OK
+2025-02-15 13:49:06,446 common.logger INFO:	user: 01JM4SRQGH7N8KM3QCGD8F5WPA(USER): http://15.165.81.57:8000/users
+INFO:     112.166.74.44:56903 - "PUT /users HTTP/1.1" 200 OK
+2025-02-15 16:25:38,372 common.logger INFO:	user: None: http://15.165.81.57/docs
+INFO:     27.0.238.70:40658 - "GET /docs HTTP/1.1" 200 OK
+2025-02-15 16:25:38,383 common.logger INFO:	user: None: http://15.165.81.57/redoc
+INFO:     27.0.238.187:40994 - "GET /redoc HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2025-02-15 22:24:30,745 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     134.199.156.68:46448 - "GET / HTTP/1.1" 404 Not Found
+2025-02-15 22:24:31,070 common.logger INFO:	user: None: http://15.165.81.57:8000/login
+INFO:     134.199.156.68:46460 - "GET /login HTTP/1.1" 404 Not Found
+2025-02-15 23:00:52,928 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     198.235.24.96:59908 - "GET / HTTP/1.1" 404 Not Found
+2025-02-15 23:52:33,921 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     147.182.174.206:40964 - "GET / HTTP/1.1" 404 Not Found
+2025-02-15 23:54:00,442 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     64.227.70.84:34262 - "GET / HTTP/1.1" 404 Not Found
+2025-02-15 23:58:08,818 common.logger INFO:	user: None: http://172.31.42.29:8000/
+INFO:     167.99.231.33:54410 - "GET / HTTP/1.0" 404 Not Found
+2025-02-16 00:57:07,765 common.logger INFO:	user: None: http://15.165.81.57:8000/portal
+INFO:     196.251.66.31:59448 - "POST /portal HTTP/1.1" 404 Not Found
+2025-02-16 02:29:55,307 common.logger INFO:	user: None: http://15.165.81.57:8000/.env
+INFO:     8.217.171.125:57048 - "GET /.env HTTP/1.1" 404 Not Found
+2025-02-16 05:06:26,296 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     54.183.186.9:45472 - "GET / HTTP/1.1" 404 Not Found
+2025-02-16 07:23:23,720 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     162.247.222.130:46185 - "GET / HTTP/1.0" 404 Not Found
+WARNING:  Invalid HTTP request received.
+2025-02-16 07:51:47,748 common.logger INFO:	user: None: http://15.165.81.57/
+INFO:     206.189.122.27:55698 - "GET / HTTP/1.1" 404 Not Found
+2025-02-16 07:51:48,285 common.logger INFO:	user: None: http://15.165.81.57/favicon.ico
+INFO:     206.189.122.27:55714 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2025-02-16 07:53:01,667 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     112.154.119.66:60337 - "GET / HTTP/1.1" 404 Not Found
+2025-02-16 07:53:01,897 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     112.154.119.66:60337 - "GET / HTTP/1.1" 404 Not Found
+2025-02-16 07:53:06,918 common.logger INFO:	user: None: http://15.165.81.57:8000/docs
+INFO:     112.154.119.66:60342 - "GET /docs HTTP/1.1" 200 OK
+2025-02-16 07:53:07,214 common.logger INFO:	user: None: http://15.165.81.57:8000/openapi.json
+INFO:     112.154.119.66:60342 - "GET /openapi.json HTTP/1.1" 200 OK
+2025-02-16 08:42:54,885 common.logger INFO:	user: None: http://15.165.81.57:8000/docs
+INFO:     112.154.119.66:61991 - "GET /docs HTTP/1.1" 200 OK
+2025-02-16 08:42:55,109 common.logger INFO:	user: None: http://15.165.81.57:8000/openapi.json
+INFO:     112.154.119.66:61991 - "GET /openapi.json HTTP/1.1" 200 OK
+2025-02-16 08:42:57,146 common.logger INFO:	user: None: http://15.165.81.57:8000/docs
+INFO:     112.154.119.66:61991 - "GET /docs HTTP/1.1" 200 OK
+2025-02-16 08:42:57,237 common.logger INFO:	user: None: http://15.165.81.57:8000/openapi.json
+INFO:     112.154.119.66:61991 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [9339]
+INFO:     Stopping reloader process [9330]

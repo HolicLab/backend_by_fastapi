@@ -15,7 +15,6 @@ class StudySession:
 @dataclass
 class StudyData:
     id: str
-    user_id: str
     session_id: str
     ppg_value: float
     focus_score: float

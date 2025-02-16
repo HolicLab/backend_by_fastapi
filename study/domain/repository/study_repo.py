@@ -27,6 +27,6 @@ class IStudy(metaclass=ABCMeta):
         raise NotImplementedError
 
     @abstractmethod
-    def delete_session(self, user_id:str, session_id: str) -> StudySession:
+    def delete_session(self, user_id:str, session_id: str):
         raise NotImplementedError
     

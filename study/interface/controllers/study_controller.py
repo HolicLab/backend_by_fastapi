@@ -43,6 +43,7 @@ def create_session(
     )
 
     response = asdict(session)
+    return response
 
 # 세션 종료 요청에 대한 파이단틱 모델
 class CompleteSessionResponse(BaseModel):
@@ -70,7 +71,6 @@ def complete_session(
 # 데이터 파이단틱 응답 모델
 class DataResponse(BaseModel):
     id: str
-    user_id: str
     session_id: str
     ppg_value: float
     focus_score: float
@@ -93,7 +93,6 @@ def create_data(
     study_service: StudyService = Depends(Provide[Container.study_service])
 ):
     data = study_service.create_data(
-        user_id = current_user.id,
         session_id = body.session_id,
         ppg_value = body.ppg_value,
         focus_score = body.focus_score,
