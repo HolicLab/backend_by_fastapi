@@ -3,11 +3,13 @@ from study.domain.study import StudySession, StudyData
 from study.domain.repository.study_repo import IStudy
 from datetime import datetime
 from typing import Optional
+from dependency_injector.wiring import inject
 
 class StudyService:
+    @inject
     def __init__(self, study_repo: IStudy):
         self.study_repo = study_repo
-        self.ulid = ULID
+        self.ulid = ULID()
 
     # 사용자의 학습 세션들을 가져온다(페이지네이션 처리됨)
     def get_sessions(
@@ -24,7 +26,7 @@ class StudyService:
     
     # 사용자의 특정 세션의 세부데이터를 가져온다.
     def get_datas(self, user_id: str, session_id: str) -> list[StudyData]:
-        return self.study_repo.find_datas_by_session_id(user_id = user_id, session = session_id)    
+        return self.study_repo.find_datas_by_session_id(user_id = user_id, session_id = session_id)    
         
     
     # 학습 세션 생성
@@ -32,7 +34,7 @@ class StudyService:
         self,
         user_id: str,
         subject: str,
-        start_time: datetime,
+        start_time: str,
     )-> StudySession:
         now = datetime.now()
 
@@ -65,7 +67,7 @@ class StudyService:
         session.avg_focus = avg_focus
         session.end_time = end_time
 
-        self.user_repo.update_session(user_id = user_id, session = session)
+        self.study_repo.update_session(user_id = user_id, session = session)
 
         return session
 
@@ -74,24 +76,25 @@ class StudyService:
         self,
         user_id: str,
         session_id: str,
-        ppg_value: float,
-        focus_score: float,
-        time: str,
-    ) -> StudyData:
+        datas: list[dict]
+    ) -> list[StudyData]:
+
+        session = self.study_repo.find_session_by_id(user_id = user_id, session_id = session_id)
+        
         now = datetime.now()
+        study_datas = []
+        for data in datas:
+            study_data = StudyData(
+                id = self.ulid.generate(),
+                session_id = session_id,
+                ppg_value = data.ppg_value,
+                focus_score = data.focus_score,
+                time = data.time,
+                created_at = now
+            )
+            study_datas.append(study_data)
 
-        data = StudyData(
-            id = self.ulid.generate(),
-            session_id = session_id,
-            ppg_value = ppg_value,
-            focus_score = focus_score,
-            time = time,
-            create_at = now
-        )
-
-        self.study_repo.save_data(user_id = user_id, data = data)
-
-        return data
+        return self.study_repo.save_data(user_id = user_id, datas = study_datas)
 
     # 특정 세션 삭제
     def delete_session(self, user_id: str, session_id: str):

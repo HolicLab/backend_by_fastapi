@@ -23,7 +23,7 @@ class IStudy(metaclass=ABCMeta):
         raise NotImplementedError
     
     @abstractmethod
-    def save_data(self, user_id:str, data: StudyData) -> StudyData:
+    def save_data(self, user_id:str, datas: list[StudyData]) -> list[StudyData]:
         raise NotImplementedError
 
     @abstractmethod

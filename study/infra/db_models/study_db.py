@@ -15,13 +15,14 @@ class StudySession(Base):
     created_at = Column(DateTime, nullable=False, default=datetime.utcnow)
     updated_at = Column(DateTime, nullable=False, onupdate=datetime.utcnow)
 
-    study_data = relationship("StudyData", back_populates="study_session")
+    # all, delete-orphan옵션에 의해 StudySession 객체가 삭제될때 연관된 StudyData 객체들도 자동으로 삭제
+    study_data = relationship("StudyData", back_populates="study_session", cascade="all, delete-orphan")
 
 class StudyData(Base):
     __tablename__ = "StudyData"
 
     id = Column(String(36), primary_key=True)
-    session_id = Column(String(36), ForeignKey("StudySession.id"), nullable=False)
+    session_id = Column(String(36), ForeignKey("StudySession.id", ondelete="CASCADE"), nullable=False)
     ppg_value = Column(Float(asdecimal=True))
     focus_score = Column(Float(asdecimal=True))
     time = Column(String(30))

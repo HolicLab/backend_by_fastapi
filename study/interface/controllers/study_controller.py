@@ -36,7 +36,12 @@ def create_session(
     body: CreateSessionResponse,
     study_service: StudyService = Depends(Provide[Container.study_service])
 ):
-    session = study_session.create_session(
+    if study_service is None:
+        raise ValueError("study_service가 None입니다. 의존성 주입 확인 필요")
+    
+    print("study_service가 정상적으로 주입되었습니다.")  # 여기서도 출력되는지 확인
+
+    session = study_service.create_session(
         user_id = current_user.id,
         subject= body.subject,
         start_time = body.start_time,
@@ -77,36 +82,37 @@ class DataResponse(BaseModel):
     time: str
     created_at: datetime
 
-# 데이터 생성 요청에 대한 파이단틱 모델
-class CreateDataResponse(BaseModel):
-    session_id: str = Field(min_length = 1, max_length = 36)
+# 개별 데이터 항목에 대한 내부 모델 (단일 데이터)
+class SingleData(BaseModel):
     ppg_value: float
     focus_score: float
     time: str = Field(min_length = 1, max_length = 36)
 
+# 데이터 생성 요청에 대한 파이단틱 모델 (리스트 허용)
+class CreateDataResponse(BaseModel):
+    session_id: str = Field(min_length = 1, max_length = 36)
+    datas: list[SingleData] = Field(..., min_items=1)
+
 # POST /study/data (집중도 데이터 저장)
-@router.post("/data", status_code = 201, response_model = DataResponse)
+@router.post("/data", status_code = 201, response_model = list[DataResponse])
 @inject
 def create_data(
     current_user: Annotated[CurrentUser, Depends(get_current_user)],
     body : CreateDataResponse,
     study_service: StudyService = Depends(Provide[Container.study_service])
 ):
-    data = study_service.create_data(
+    created_datas = study_service.create_data(
         session_id = body.session_id,
-        ppg_value = body.ppg_value,
-        focus_score = body.focus_score,
-        time = body.time
+        user_id = current_user.id,
+        datas = body.datas
     )
 
-    response = asdict(data)
-
-    return response
+    return created_datas
 
 # 세션 get 요청 응답 파이단틱 모델
 class GetSessionResponse(BaseModel):
     total_count: int
-    items_per_page: int
+    page: int
     sessions: list[SessionResponse]
 
 # GET /study/session : 전체 세션 조회
@@ -151,6 +157,9 @@ def get_datas(
         user_id = current_user.id,
         session_id = session_id,
     )
+
+    if datas is None:
+        return {"datas": []}
 
     res_data = []
     for data in datas:

@@ -10,7 +10,16 @@ from containers import Container
 import uvicorn
 
 app = FastAPI()
-app.container = Container()
+container = Container()
+# app.container = Container()
+
+container.wire(modules=[
+    "user.interface.controllers.user_controller",
+    # "note.interface.controllers.note_controller",
+    "study.interface.controllers.study_controller"
+])
+
+app.container = container
 app.include_router(user_routers)
 app.include_router(study_routers)
 # app.include_router(note_routers)

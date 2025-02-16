@@ -1,4 +1,3 @@
-
 from fastapi import HTTPException
 from sqlalchemy.orm import joinedload
 
@@ -7,6 +6,8 @@ from study.domain.study import StudySession, StudyData
 from study.domain.repository.study_repo import IStudy
 from study.infra.db_models.study_db import StudySession as Session_db
 from study.infra.db_models.study_db import StudyData as Data_db
+from utils.db_utils import row_to_dict
+from dataclasses import asdict
 
 class StudyRepository(IStudy):
     # db에서 학습 세션을 조회
@@ -76,7 +77,7 @@ class StudyRepository(IStudy):
                 db.query(Session_db)
                 .filter(Session_db.user_id == user_id, Session_db.id == session.id).first()
             )
-            if not session:
+            if not new_session:
                 raise HTTPException(status_code = 422)
             
             new_session.updated_at = session.updated_at
@@ -86,23 +87,25 @@ class StudyRepository(IStudy):
             db.add(new_session)
             db.commit()
 
-        return StudySession(**row_to_dict(new_session))
+            return StudySession(**row_to_dict(new_session))
             
-    # StudyData 집중도 데이터 생성
-    def save_data(self, user_id:str, data: StudyData) -> StudyData:
+    # StudyData 집중도 데이터 생성 (bulk insert)
+    def save_data(self, user_id:str, datas: list[StudyData]) -> list[StudyData]:
         with SessionLocal() as db:
-            new_data = Data_db(
-                id = data.id,
-                session_id = data.session_id,
-                ppg_value = data.ppg_value,
-                focus_score = data.focus_score,
-                time = data.time,
-                created_at = data.created_at
-            )
-            db.add(new_data)
+            new_datas = [
+                {   # 직접 딕셔너리로 매핑
+                    "id": data.id,
+                    "session_id": data.session_id,
+                    "ppg_value": data.ppg_value,
+                    "focus_score": data.focus_score,
+                    "time": data.time,
+                    "created_at": data.created_at
+                }
+                for data in datas
+            ]
+            db.bulk_insert_mappings(Data_db, new_datas)  # 수정된 new_datas 사용
             db.commit()
-            db.refresh(new_session)
-        return StudyData(**row_to_dict(new_data))
+            return datas
 
     # 학습 세션 삭제
     def delete_session(self, user_id:str, session_id: str):
