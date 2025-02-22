@@ -10,6 +10,7 @@ class Settings(BaseSettings):
 
     database_username: str
     database_password: str
+    docker_database: str
     jwt_secret: str
     email_password: str
     celery_broker_url: str

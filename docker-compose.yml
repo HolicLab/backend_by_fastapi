@@ -12,5 +12,15 @@ services:
       MYSQL_DATABASE: fastapi
       MYSQL_USER: ubuntu
       MYSQL_PASSWORD: ubuntu1234
+  fastapi-app:
+    build:
+      context: .
+    ports:
+      - "8000:8000/tcp"
+    restart: always
+    depends_on:
+      - mysql-docker
+    volumes:
+      - .:/app
 volumes:
   mysqlvolume:
