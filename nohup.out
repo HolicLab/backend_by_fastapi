@@ -4,3 +4,264 @@ INFO:     Started reloader process [39077] using WatchFiles
 INFO:     Started server process [39086]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
+2025-02-17 17:04:39,482 common.logger INFO:	user: None: http://15.165.81.57:8000/docs
+INFO:     112.154.119.66:63425 - "GET /docs HTTP/1.1" 200 OK
+2025-02-17 17:04:39,659 common.logger INFO:	user: None: http://15.165.81.57:8000/openapi.json
+/home/ubuntu/.cache/pypoetry/virtualenvs/fastapi-server-LNSPnSFC-py3.12/lib/python3.12/site-packages/pydantic/json_schema.py:2279: PydanticJsonSchemaWarning: Default value (FieldInfo(annotation=NoneType, required=True, metadata=[MinLen(min_length=1), MaxLen(max_length=36)]),) is not JSON serializable; excluding default from JSON schema [non-serializable-default]
+  warnings.warn(message, PydanticJsonSchemaWarning)
+INFO:     112.154.119.66:63425 - "GET /openapi.json HTTP/1.1" 200 OK
+2025-02-17 17:04:47,539 common.logger INFO:	user: None: http://15.165.81.57:8000/users?page=1&items_per_page=10
+INFO:     112.154.119.66:63428 - "GET /users?page=1&items_per_page=10 HTTP/1.1" 200 OK
+2025-02-17 20:42:55,582 common.logger INFO:	user: None: http://15.165.81.57/
+INFO:     101.36.119.146:47672 - "GET / HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2025-02-17 20:43:37,357 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     118.194.250.95:45786 - "GET / HTTP/1.1" 404 Not Found
+2025-02-17 20:43:37,571 common.logger INFO:	user: None: http://15.165.81.57:8000/favicon.ico
+INFO:     118.194.250.95:45828 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2025-02-17 20:43:37,774 common.logger INFO:	user: None: http://15.165.81.57:8000/robots.txt
+INFO:     118.194.250.95:45880 - "GET /robots.txt HTTP/1.1" 404 Not Found
+2025-02-17 20:43:37,775 common.logger INFO:	user: None: http://15.165.81.57:8000/sitemap.xml
+INFO:     118.194.250.95:45882 - "GET /sitemap.xml HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2025-02-18 02:45:32,357 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     139.59.168.35:35888 - "GET / HTTP/1.1" 404 Not Found
+2025-02-18 02:45:32,891 common.logger INFO:	user: None: http://15.165.81.57:8000/login
+INFO:     139.59.168.35:35904 - "GET /login HTTP/1.1" 404 Not Found
+2025-02-18 04:14:47,737 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     122.116.134.171:54766 - "GET / HTTP/1.0" 404 Not Found
+2025-02-18 04:26:14,327 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     64.227.108.146:60443 - "GET / HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2025-02-18 05:18:40,040 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     142.93.130.213:52904 - "GET / HTTP/1.1" 404 Not Found
+2025-02-18 05:18:40,543 common.logger INFO:	user: None: http://15.165.81.57:8000/login
+INFO:     142.93.130.213:48724 - "GET /login HTTP/1.1" 404 Not Found
+2025-02-18 07:45:52,312 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     220.133.135.115:49409 - "GET / HTTP/1.0" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2025-02-18 12:32:52,110 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     216.218.206.115:36639 - "GET / HTTP/1.1" 404 Not Found
+2025-02-18 12:33:41,814 common.logger INFO:	user: None: http://15.165.81.57:8000/favicon.ico
+INFO:     216.218.206.87:31209 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2025-02-18 12:34:04,334 common.logger INFO:	user: None: http://api.ipify.org/?format=json
+INFO:     216.218.206.107:12135 - "GET /?format=json HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+2025-02-18 14:40:36,156 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     59.127.77.85:55021 - "GET / HTTP/1.0" 404 Not Found
+WARNING:  Invalid HTTP request received.
+2025-02-18 16:16:19,576 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     162.142.125.193:37772 - "GET / HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+2025-02-18 19:12:28,661 common.logger INFO:	user: None: http://15.165.81.57:8000/token
+INFO:     106.75.169.149:47686 - "POST /token HTTP/1.1" 404 Not Found
+2025-02-18 20:37:44,338 common.logger INFO:	user: None: http://15.165.81.57/
+INFO:     24.144.87.226:34890 - "GET / HTTP/1.1" 404 Not Found
+2025-02-18 20:37:44,608 common.logger INFO:	user: None: http://15.165.81.57/favicon.ico
+INFO:     24.144.87.226:34892 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2025-02-18 22:02:22,495 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     4.156.21.72:45706 - "GET / HTTP/1.1" 404 Not Found
+2025-02-18 23:12:51,251 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     185.242.226.48:58280 - "GET / HTTP/1.1" 404 Not Found
+2025-02-18 23:17:16,490 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     45.156.128.41:47477 - "GET / HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2025-02-18 23:31:04,839 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     134.199.153.123:58902 - "GET / HTTP/1.1" 404 Not Found
+2025-02-18 23:31:05,177 common.logger INFO:	user: None: http://15.165.81.57:8000/login
+INFO:     134.199.153.123:58904 - "GET /login HTTP/1.1" 404 Not Found
+2025-02-18 23:35:28,022 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     59.126.32.3:41382 - "GET / HTTP/1.0" 404 Not Found
+2025-02-19 06:59:45,667 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     109.116.189.104:35349 - "GET / HTTP/1.0" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2025-02-19 14:55:04,077 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     178.32.72.214:54677 - "GET / HTTP/1.1" 404 Not Found
+2025-02-19 15:02:09,480 common.logger INFO:	user: None: http://15.165.81.57:8000/favicon.ico
+INFO:     217.182.186.39:40215 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+2025-02-19 18:21:57,591 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     51.81.181.170:37625 - "GET / HTTP/1.1" 404 Not Found
+2025-02-19 20:36:18,780 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     199.45.155.82:60716 - "GET / HTTP/1.1" 404 Not Found
+2025-02-19 20:36:27,264 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     199.45.155.82:43032 - "GET / HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+2025-02-19 20:48:16,488 common.logger INFO:	user: None: http://15.165.81.57:8000/.env
+INFO:     47.239.42.214:55718 - "GET /.env HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2025-02-19 21:17:28,450 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     144.126.216.107:37000 - "GET / HTTP/1.1" 404 Not Found
+2025-02-19 21:17:28,725 common.logger INFO:	user: None: http://15.165.81.57:8000/login
+INFO:     144.126.216.107:37002 - "GET /login HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+2025-02-20 03:01:37,145 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     201.159.17.105:33789 - "GET / HTTP/1.0" 404 Not Found
+2025-02-20 03:01:38,880 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     201.159.17.105:33768 - "GET / HTTP/1.0" 404 Not Found
+2025-02-20 03:36:08,963 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     59.126.32.3:41739 - "GET / HTTP/1.0" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2025-02-20 04:33:22,659 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     147.182.249.53:51034 - "GET / HTTP/1.1" 404 Not Found
+2025-02-20 04:33:22,928 common.logger INFO:	user: None: http://15.165.81.57:8000/login
+INFO:     147.182.249.53:51048 - "GET /login HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+2025-02-20 06:36:41,313 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     8.219.254.123:36680 - "GET / HTTP/1.1" 404 Not Found
+2025-02-20 06:36:41,457 common.logger INFO:	user: None: http://15.165.81.57:8000/favicon.ico
+INFO:     8.219.254.123:36682 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2025-02-20 11:58:58,172 common.logger INFO:	user: None: http://15.165.81.57:8000/aaa9
+INFO:     170.64.134.89:56234 - "GET /aaa9 HTTP/1.1" 404 Not Found
+2025-02-20 11:59:03,716 common.logger INFO:	user: None: http://15.165.81.57:8000/aab8
+INFO:     170.64.134.89:32994 - "GET /aab8 HTTP/1.1" 404 Not Found
+2025-02-20 11:59:07,653 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     170.64.134.89:33002 - "GET / HTTP/1.1" 404 Not Found
+2025-02-20 13:08:32,501 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     118.26.36.130:52204 - "GET / HTTP/1.1" 404 Not Found
+2025-02-20 14:31:05,662 common.logger INFO:	user: None: http://15.165.81.57:8000/docs
+INFO:     112.154.119.66:57962 - "GET /docs HTTP/1.1" 200 OK
+2025-02-20 14:31:06,468 common.logger INFO:	user: None: http://15.165.81.57:8000/openapi.json
+INFO:     112.154.119.66:57962 - "GET /openapi.json HTTP/1.1" 200 OK
+2025-02-20 16:30:44,033 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     98.110.23.21:33840 - "GET / HTTP/1.0" 404 Not Found
+2025-02-20 18:52:38,316 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     147.185.132.78:63712 - "GET / HTTP/1.1" 404 Not Found
+2025-02-21 00:22:25,773 common.logger INFO:	user: None: http://15.165.81.57:8000/portal
+INFO:     196.251.66.31:57600 - "POST /portal HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2025-02-21 00:55:34,217 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     157.245.47.251:60938 - "GET / HTTP/1.1" 404 Not Found
+2025-02-21 00:55:34,751 common.logger INFO:	user: None: http://15.165.81.57:8000/login
+INFO:     157.245.47.251:60954 - "GET /login HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2025-02-21 07:43:04,426 common.logger INFO:	user: None: http://15.165.81.57:8000/redoc
+INFO:     112.166.74.44:59692 - "GET /redoc HTTP/1.1" 200 OK
+2025-02-21 07:43:05,050 common.logger INFO:	user: None: http://15.165.81.57:8000/openapi.json
+INFO:     112.166.74.44:59692 - "GET /openapi.json HTTP/1.1" 200 OK
+2025-02-21 07:47:41,674 common.logger INFO:	user: None: http://15.165.81.57:8000/helpdesk/WebObjects/Helpdesk.woa
+INFO:     45.156.128.131:53165 - "GET /helpdesk/WebObjects/Helpdesk.woa HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+2025-02-21 14:38:38,123 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     175.206.10.16:54487 - "GET / HTTP/1.0" 404 Not Found
+WARNING:  Invalid HTTP request received.
+2025-02-21 17:28:35,691 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     118.194.248.4:39914 - "GET / HTTP/1.1" 404 Not Found
+2025-02-21 17:28:40,700 common.logger INFO:	user: None: http://15.165.81.57:8000/favicon.ico
+INFO:     118.194.248.4:39926 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2025-02-21 17:28:40,708 common.logger INFO:	user: None: http://15.165.81.57:8000/robots.txt
+INFO:     118.194.248.4:39942 - "GET /robots.txt HTTP/1.1" 404 Not Found
+2025-02-21 17:28:40,717 common.logger INFO:	user: None: http://15.165.81.57:8000/sitemap.xml
+INFO:     118.194.248.4:39956 - "GET /sitemap.xml HTTP/1.1" 404 Not Found
+2025-02-21 18:40:32,657 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     118.36.149.247:40857 - "GET / HTTP/1.0" 404 Not Found
+2025-02-21 22:29:43,271 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     162.243.208.127:55377 - "GET / HTTP/1.1" 404 Not Found
+2025-02-21 23:37:11,793 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     171.6.91.229:35535 - "GET / HTTP/1.0" 404 Not Found
+2025-02-21 23:55:17,269 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     121.157.243.191:36575 - "GET / HTTP/1.0" 404 Not Found
+2025-02-21 23:56:05,948 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     162.142.125.201:54564 - "GET / HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+2025-02-21 23:56:15,803 common.logger INFO:	user: None: http://15.165.81.57:8000/favicon.ico
+INFO:     162.142.125.201:44636 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2025-02-22 01:34:00,300 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     159.65.99.32:33946 - "GET / HTTP/1.1" 404 Not Found
+2025-02-22 01:34:00,607 common.logger INFO:	user: None: http://15.165.81.57:8000/login
+INFO:     159.65.99.32:33950 - "GET /login HTTP/1.1" 404 Not Found
+2025-02-22 01:57:13,015 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     135.148.10.174:56063 - "GET / HTTP/1.1" 404 Not Found
+2025-02-22 02:05:07,956 common.logger INFO:	user: None: http://15.165.81.57:8000/favicon.ico
+INFO:     51.81.110.62:59303 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+2025-02-22 05:04:43,897 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     64.62.156.70:6841 - "GET / HTTP/1.1" 404 Not Found
+2025-02-22 05:05:03,859 common.logger INFO:	user: None: http://15.165.81.57:8000/favicon.ico
+INFO:     64.62.156.78:64553 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2025-02-22 05:05:07,990 common.logger INFO:	user: None: http://api.ipify.org/?format=json
+INFO:     64.62.156.70:4593 - "GET /?format=json HTTP/1.1" 404 Not Found
+2025-02-22 05:42:28,884 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     202.112.47.141:49344 - "GET / HTTP/1.1" 404 Not Found
+2025-02-22 05:54:39,325 common.logger INFO:	user: None: http://15.165.81.57:8000/v1/models
+INFO:     202.112.47.141:56324 - "GET /v1/models HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+2025-02-22 06:05:20,208 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     51.178.236.241:48487 - "GET / HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+2025-02-22 06:12:15,054 common.logger INFO:	user: None: http://15.165.81.57:8000/favicon.ico
+INFO:     51.91.174.244:35051 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2025-02-22 07:00:37,418 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     211.55.242.66:33866 - "GET / HTTP/1.0" 404 Not Found
+2025-02-22 09:06:52,655 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     211.224.171.19:52512 - "GET / HTTP/1.0" 404 Not Found
+2025-02-22 09:28:05,707 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     205.210.31.8:62618 - "GET / HTTP/1.1" 404 Not Found
+2025-02-22 10:08:38,622 common.logger INFO:	user: None: http://15.165.81.57:8000/.env
+INFO:     8.222.198.241:53828 - "GET /.env HTTP/1.1" 404 Not Found
+2025-02-22 12:03:15,682 common.logger INFO:	user: None: http://15.165.81.57:8000/redoc
+INFO:     112.154.119.66:50739 - "GET /redoc HTTP/1.1" 200 OK
+2025-02-22 12:03:16,137 common.logger INFO:	user: None: http://15.165.81.57:8000/openapi.json
+INFO:     112.154.119.66:50739 - "GET /openapi.json HTTP/1.1" 200 OK
+2025-02-22 13:25:41,642 common.logger INFO:	user: None: http://15.165.81.57:8000/
+INFO:     103.203.57.20:59224 - "GET / HTTP/1.1" 404 Not Found
+2025-02-22 13:55:36,039 common.logger INFO:	user: None: http://15.165.81.57:8000/playlist.m3u
+INFO:     89.248.172.41:59578 - "HEAD /playlist.m3u HTTP/1.1" 404 Not Found
+WARNING:  WatchFiles detected changes in 'database.py', 'config.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [39086]
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/usr/lib/python3.12/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/multiprocessing/spawn.py", line 131, in _main
+    prepare(preparation_data)
+  File "/usr/lib/python3.12/multiprocessing/spawn.py", line 246, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+  File "/usr/lib/python3.12/multiprocessing/spawn.py", line 297, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen runpy>", line 286, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/ubuntu/backend_by_fastapi/main.py", line 4, in <module>
+    from user.interface.controllers.user_controller import router as user_routers
+  File "/home/ubuntu/backend_by_fastapi/user/interface/controllers/user_controller.py", line 6, in <module>
+    from containers import Container
+  File "/home/ubuntu/backend_by_fastapi/containers.py", line 6, in <module>
+    from user.infra.repository.user_repo import UserRepository
+  File "/home/ubuntu/backend_by_fastapi/user/infra/repository/user_repo.py", line 3, in <module>
+    from database import SessionLocal
+  File "/home/ubuntu/backend_by_fastapi/database.py", line 14, in <module>
+    engine = create_engine(SQLALCHEMY_DATABASE_URL)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 2, in create_engine
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/fastapi-server-LNSPnSFC-py3.12/lib/python3.12/site-packages/sqlalchemy/util/deprecations.py", line 281, in warned
+    return fn(*args, **kwargs)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/fastapi-server-LNSPnSFC-py3.12/lib/python3.12/site-packages/sqlalchemy/engine/create.py", line 602, in create_engine
+    dbapi = dbapi_meth(**dbapi_args)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/.cache/pypoetry/virtualenvs/fastapi-server-LNSPnSFC-py3.12/lib/python3.12/site-packages/sqlalchemy/dialects/mysql/pymysql.py", line 74, in import_dbapi
+    return __import__("pymysql")
+           ^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'pymysql'

@@ -6,21 +6,56 @@ services:
       - mysqlvolume:/var/lib/mysql
     restart: always
     ports:
-      - "3306:3306/tcp"
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root1234
       MYSQL_DATABASE: fastapi
       MYSQL_USER: ubuntu
       MYSQL_PASSWORD: ubuntu1234
+    networks:
+      - mynetwork
+
   fastapi-app:
     build:
       context: .
-    ports:
-      - "8000:8000/tcp"
+      dockerfile: Dockerfile
     restart: always
     depends_on:
       - mysql-docker
+    ports:
+      - "8000:8000"
     volumes:
       - .:/app
+    networks:
+      - mynetwork
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - fastapi-app
+    networks:
+      - mynetwork
+    volumes:
+      - ./nginx/certs:/etc/nginx/certs
+      - ./nginx/data:/var/www/html
+    restart: always
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./nginx/certs:/etc/letsencrypt
+      - ./nginx/data:/var/www/html
+    command: certonly --webroot --webroot-path=/var/www/html -d youngwon.site -d www.youngwon.site --email lka1116@naver.com --agree-tos --non-interactive --dry-run
+    depends_on:
+      - nginx
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+
 volumes:
   mysqlvolume:

@@ -9,7 +9,7 @@ SQLALCHEMY_DATABASE_URL = (
     # mysql+mysqldb로 연결, 데이터베이스의 유저 이름과 패스워드, 데이터베이스 스키마 이름
     "mysql+pymysql://"
     f"{settings.database_username}:{settings.database_password}"
-    f"@{settings.docker_database}"
+    f"@mysql-docker:3306/{settings.database_name}"
 )
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 

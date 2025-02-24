@@ -10,11 +10,12 @@ class Settings(BaseSettings):
 
     database_username: str
     database_password: str
-    docker_database: str
+    database_host: str       # 호스트
+    database_name: str       # 데이터베이스 이름
     jwt_secret: str
     email_password: str
-    celery_broker_url: str
-    celery_backend_url: str
+    # celery_broker_url: str
+    # celery_backend_url: str
 
 # 페이지 교체 알고리즘중 하나인 lru알고리즘으로 이미 구한 값이 있다면 그 값을 반환한다.
 @lru_cache
