@@ -1,16 +1,27 @@
 ### 회원가입, 로그인
 **POST** /users : 유저 생성
+
 **GET** /users : 유저 목록 조회
+
 **DELETE** /users : 유저 삭제(회원 탈퇴) 
+
 **POST** /users/login : 로그인
+
 **PUT** /users/{user_id} : 유저 정보 업데이트
+
 **GET** /users/me : 로그인한 사용자 정보
+
 ### 학습 데이터
 **POST** /study/session/start : 학습 세션 생성
+
 **POST** /study/session/end : 학습 세션 종료
+
 **POST** /study/data : 집중도 데이터 저장
+
 **GET** /study/session : 전체 세션 조회
+
 **GET** /study/data/{session_id} : 특정 세션의 전체 데이터 조회
+
 **DELETE** /study/session/{session_id} : 학습 세션 삭제
 
 
