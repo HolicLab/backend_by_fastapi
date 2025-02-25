@@ -48,12 +48,25 @@ services:
     volumes:
       - ./nginx/certs:/etc/letsencrypt
       - ./nginx/data:/var/www/html
-    command: certonly --webroot --webroot-path=/var/www/html -d youngwon.site -d www.youngwon.site --email lka1116@naver.com --agree-tos --non-interactive --dry-run
+    command: certonly --webroot --webroot-path=/var/www/html -d youngwon.site -d www.youngwon.site --email lka1116@naver.com --agree-tos --non-interactive --renew-by-default
+    restart: always
     depends_on:
       - nginx
     networks:
       - mynetwork
-
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: mysql-docker
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    depends_on:
+      - mysql-docker
+    networks:
+      - mynetwork
 networks:
   mynetwork:
 
