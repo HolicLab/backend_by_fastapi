@@ -2,7 +2,7 @@ from fastapi import HTTPException
 from sqlalchemy.orm import joinedload
 
 from database import SessionLocal
-from study.domain.study import StudySession, StudyData
+from study.domain.study import StudySession, StudyData, Subject
 from study.domain.repository.study_repo import IStudy
 from study.infra.db_models.study_db import StudySession as Session_db
 from study.infra.db_models.study_db import StudyData as Data_db
@@ -58,6 +58,7 @@ class StudyRepository(IStudy):
             new_session = Session_db(
                 id = session.id,
                 user_id = user_id,
+                subject_id = session.subject_id,
                 subject = session.subject,
                 avg_focus = session.avg_focus,
                 start_time = session.start_time,
@@ -117,5 +118,23 @@ class StudyRepository(IStudy):
 
             db.delete(session)
             db.commit()
+    
+     # 과목 조회
+    def get_subjects(self, user_id:str) -> list[Subject]:
+        return []
         
+    # 과목 추가
+    def save_subject(self, user_id:str, subject: Subject) -> Subject:
+        return subject
 
+    # 과목 수정
+    def update_subject(self, user_id:str, subject: Subject) -> Subject:
+        return subject
+
+    # 과목 삭제
+    def delete_subject(self, user_id:str, subject: Subject):
+        return
+    
+    # 과목명으로 과목 조회
+    def find_by_subject_name(self, user_id:str, subject_name:str) -> Subject:
+        return None

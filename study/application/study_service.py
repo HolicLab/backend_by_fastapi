@@ -1,5 +1,5 @@
 from ulid import ULID
-from study.domain.study import StudySession, StudyData
+from study.domain.study import StudySession, StudyData, Subject
 from study.domain.repository.study_repo import IStudy
 from datetime import datetime
 from typing import Optional
@@ -37,10 +37,13 @@ class StudyService:
         start_time: str,
     )-> StudySession:
         now = datetime.now()
+        subject = self.study_repo.find_by_subject_name(user_id = user_id, subject_name = subject)
+        subject_id = subject.id
 
         session = StudySession(
             id = self.ulid.generate(),
             user_id = user_id,
+            subject_id = subject_id,
             subject = subject,
             avg_focus = None,
             start_time = start_time,
@@ -99,3 +102,38 @@ class StudyService:
     # 특정 세션 삭제
     def delete_session(self, user_id: str, session_id: str):
         return self.study_repo.delete_session(user_id = user_id, session_id = session_id)
+
+    # 전체 과목 조회
+    def get_subjects(self, user_id: str):
+        return self.study_repo.get_subjects(user_id = user_id)
+
+    # 과목 추가
+    def create_subject(self, user_id: str, subject_name: str) -> Subject:
+        now = datetime.now()
+
+        subject = Subject(
+            id = self.ulid.generate(),
+            user_id = user_id,
+            subject_name = subject_name,
+            created_at = now
+        )
+
+        return self.study_repo.save_subject(user_id = user_id, subject = subject)
+    
+    # 과목명 수정
+    def update_subject(self, user_id: str, target_name: str, new_name: str) -> Subject:
+        subject = self.study_repo.find_by_subject_name(user_id = user_id, subject_name = target_name)
+
+        subject.subject_name = new_name
+        
+        return self.study_repo.update_subject(user_id = user_id, subject = subject)
+    
+    # 과목 삭제
+    def delete_subject(self, user_id: str, subject_name:str):
+        subject = self.study_repo.find_by_subject_name(user_id = user_id, subject_name = subject_name)
+
+        return self.study_repo.delete_subject(user_id = user_id, subject = subject)
+
+    
+
+        
