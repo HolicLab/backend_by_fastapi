@@ -5,7 +5,7 @@ from datetime import datetime
 class StudySession:
     id: str
     user_id: str
-    subject_id: str
+    subject_id: str | None
     subject: str | None
     avg_focus: float | None
     start_time: str
