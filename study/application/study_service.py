@@ -38,13 +38,12 @@ class StudyService:
     )-> StudySession:
         now = datetime.now()
         subject = self.study_repo.find_by_subject_name(user_id = user_id, subject_name = subject)
-        subject_id = subject.id
 
         session = StudySession(
             id = self.ulid.generate(),
             user_id = user_id,
-            subject_id = subject_id,
-            subject = subject,
+            subject_id = subject.id,
+            subject = subject.subject_name,
             avg_focus = None,
             start_time = start_time,
             end_time = None,
