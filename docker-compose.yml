@@ -48,8 +48,8 @@ services:
     volumes:
       - ./nginx/certs:/etc/letsencrypt
       - ./nginx/data:/var/www/html
-    command: certonly --webroot --webroot-path=/var/www/html -d youngwon.site -d www.youngwon.site --email lka1116@naver.com --agree-tos --non-interactive --renew-by-default
-    restart: always
+    command: certonly --webroot --webroot-path=/var/www/html -d youngwon.site -d www.youngwon.site --email lka1116@naver.com --agree-tos --non-interactive
+    restart: on-failure
     depends_on:
       - nginx
     networks:
