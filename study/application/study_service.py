@@ -1,9 +1,13 @@
 from ulid import ULID
-from study.domain.study import StudySession, StudyData
+from study.domain.study import StudySession, StudyData, Subject
 from study.domain.repository.study_repo import IStudy
 from datetime import datetime
 from typing import Optional
 from dependency_injector.wiring import inject
+import pytz
+
+# 한국 시간대 객체 생성 (pytz 사용)
+korea_timezone = pytz.timezone('Asia/Seoul')
 
 class StudyService:
     @inject
@@ -36,17 +40,19 @@ class StudyService:
         subject: str,
         start_time: str,
     )-> StudySession:
-        now = datetime.now()
+        now_korea = datetime.now(korea_timezone)
+        subject = self.study_repo.find_by_subject_name(user_id = user_id, subject_name = subject)
 
         session = StudySession(
             id = self.ulid.generate(),
             user_id = user_id,
-            subject = subject,
+            subject_id = subject.id,
+            subject = subject.subject_name,
             avg_focus = None,
             start_time = start_time,
             end_time = None,
-            created_at = now,
-            updated_at = now,
+            created_at = now_korea,
+            updated_at = now_korea,
         )
 
         self.study_repo.save_session(user_id = user_id, session = session)
@@ -61,9 +67,10 @@ class StudyService:
         end_time: str,
         avg_focus: Optional[float] = None,
     ):
+        now_korea = datetime.now(korea_timezone)
         session = self.study_repo.find_session_by_id(user_id = user_id, session_id = id)
 
-        session.updated_at = datetime.now()
+        session.updated_at = now_korea
         session.avg_focus = avg_focus
         session.end_time = end_time
 
@@ -80,8 +87,8 @@ class StudyService:
     ) -> list[StudyData]:
 
         session = self.study_repo.find_session_by_id(user_id = user_id, session_id = session_id)
-        
-        now = datetime.now()
+        now_korea = datetime.now(korea_timezone)
+
         study_datas = []
         for data in datas:
             study_data = StudyData(
@@ -90,7 +97,7 @@ class StudyService:
                 ppg_value = data.ppg_value,
                 focus_score = data.focus_score,
                 time = data.time,
-                created_at = now
+                created_at = now_korea
             )
             study_datas.append(study_data)
 
@@ -99,3 +106,38 @@ class StudyService:
     # 특정 세션 삭제
     def delete_session(self, user_id: str, session_id: str):
         return self.study_repo.delete_session(user_id = user_id, session_id = session_id)
+
+    # 전체 과목 조회
+    def get_subjects(self, user_id: str):
+        return self.study_repo.get_subjects(user_id = user_id)
+
+    # 과목 추가
+    def create_subject(self, user_id: str, subject_name: str) -> Subject:
+        now_korea = datetime.now(korea_timezone)
+        
+        subject = Subject(
+            id = self.ulid.generate(),
+            user_id = user_id,
+            subject_name = subject_name,
+            created_at = now_korea
+        )
+
+        return self.study_repo.save_subject(user_id = user_id, subject = subject)
+    
+    # 과목명 수정
+    def update_subject(self, user_id: str, target_name: str, new_name: str) -> Subject:
+        subject = self.study_repo.find_by_subject_name(user_id = user_id, subject_name = target_name)
+
+        subject.subject_name = new_name
+        
+        return self.study_repo.update_subject(user_id = user_id, subject = subject)
+    
+    # 과목 삭제
+    def delete_subject(self, user_id: str, subject_name:str):
+        subject = self.study_repo.find_by_subject_name(user_id = user_id, subject_name = subject_name)
+
+        return self.study_repo.delete_subject(user_id = user_id, subject = subject)
+
+    
+
+        

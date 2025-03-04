@@ -17,3 +17,32 @@ engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
+
+def create_tables():
+    Base.metadata.create_all(bind=engine)
+
+def create_trigger():
+     with engine.connect() as connection:
+        connection.execute(
+            text("""
+            DROP TRIGGER IF EXISTS update_study_session_subject;
+            """)
+        )
+        connection.execute(
+            text("""
+            CREATE TRIGGER update_study_session_subject
+            AFTER UPDATE ON subject
+            FOR EACH ROW
+            BEGIN
+                IF NEW.subject_name <> OLD.subject_name THEN
+                    UPDATE study_session
+                    SET subject = NEW.subject_name
+                    WHERE subject_id = OLD.id;
+                END IF;
+            END;
+            """)
+        )
+
+def init_db():
+    create_tables()
+    create_trigger()

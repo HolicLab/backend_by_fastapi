@@ -16,7 +16,8 @@ router = APIRouter(prefix="/study")
 class SessionResponse(BaseModel):
     id: str
     user_id: str
-    subject: str
+    subject_id: str | None
+    subject: str | None
     avg_focus: float | None
     start_time: str
     end_time: str | None
@@ -36,10 +37,10 @@ def create_session(
     body: CreateSessionResponse,
     study_service: StudyService = Depends(Provide[Container.study_service])
 ):
-    if study_service is None:
-        raise ValueError("study_service가 None입니다. 의존성 주입 확인 필요")
+    # if study_service is None:
+    #     raise ValueError("study_service가 None입니다. 의존성 주입 확인 필요")
     
-    print("study_service가 정상적으로 주입되었습니다.")  # 여기서도 출력되는지 확인
+    # print("study_service가 정상적으로 주입되었습니다.")  # 여기서도 출력되는지 확인
 
     session = study_service.create_session(
         user_id = current_user.id,
@@ -181,4 +182,95 @@ def delete_session(
     study_service.delete_session(
         user_id = current_user.id,
         session_id = session_id
+    )
+
+# 과목 파이단틱 응답 모델
+class SubjectResponse(BaseModel):
+    id: str
+    user_id: str
+    subject_name: str
+    created_at: datetime
+
+# 과목 생성 요청 파이단틱 모델
+class CreateSubjectResponse(BaseModel):
+    subject_name: str
+
+# POST /study/subject (과목 생성)
+@router.post("/subject", status_code = 201, response_model = SubjectResponse)
+@inject
+def create_subject(
+    current_user: Annotated[CurrentUser, Depends(get_current_user)],
+    body: CreateSubjectResponse,
+    study_service: StudyService = Depends(Provide[Container.study_service])
+):
+    subject = study_service.create_subject(
+        user_id = current_user.id,
+        subject_name = body.subject_name
+    )
+
+    response = asdict(subject)
+    return response
+
+# 과목 get 요청 응답 파이단틱
+class GetSubjectResponse(BaseModel):
+    subjects: list[SubjectResponse]
+
+# get /study/subject (과목 조회)
+@router.get("/subject", response_model = GetSubjectResponse)
+@inject
+def get_subjects(
+    current_user: Annotated[CurrentUser, Depends(get_current_user)],
+    study_service: StudyService = Depends(Provide[Container.study_service])
+):
+    subjects = study_service.get_subjects(
+        user_id = current_user.id
+    )
+
+    if subjects is None:
+        return {"subjects": []}
+    
+    res_subject = []
+    for subject in subjects:
+        subject_dict = asdict(subject)
+        res_subject.append(subject_dict)
+    
+    return {
+        "subjects" : res_subject
+    }
+# 과목명 변경 파이단틱 모델
+class UpdateSubjectName(BaseModel):
+    id: str
+    user_id: str
+    subject_name: str
+    created_at: datetime
+
+# PUT /study/subject/{target_name}/{new_name} : 과목명 변경
+@router.put("/subject/{target_name}/{new_name}", response_model=UpdateSubjectName)
+@inject
+def update_subject(
+    target_name: str,
+    new_name: str,
+    current_user: Annotated[CurrentUser, Depends(get_current_user)],
+    study_service: StudyService = Depends(Provide[Container.study_service])
+):
+    subject = study_service.update_subject(
+        user_id = current_user.id,
+        target_name = target_name,
+        new_name = new_name
+    )
+
+    response = asdict(subject)
+    return response
+
+# DELETE /subject/{subject_name} : 특정 과목 삭제
+@router.delete("/subject/{subject_name}", status_code=204)
+@inject
+def delete_subject(
+    subject_name: str,
+    current_user: Annotated[CurrentUser, Depends(get_current_user)],
+    study_service: StudyService = Depends(Provide[Container.study_service])
+):
+    study_service.delete_subject(
+        user_id = current_user.id,
+        subject_name = subject_name
     )

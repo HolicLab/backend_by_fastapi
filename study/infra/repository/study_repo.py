@@ -2,10 +2,11 @@ from fastapi import HTTPException
 from sqlalchemy.orm import joinedload
 
 from database import SessionLocal
-from study.domain.study import StudySession, StudyData
+from study.domain.study import StudySession, StudyData, Subject
 from study.domain.repository.study_repo import IStudy
 from study.infra.db_models.study_db import StudySession as Session_db
 from study.infra.db_models.study_db import StudyData as Data_db
+from study.infra.db_models.study_db import Subject as SubjectDB
 from utils.db_utils import row_to_dict
 from dataclasses import asdict
 
@@ -58,6 +59,7 @@ class StudyRepository(IStudy):
             new_session = Session_db(
                 id = session.id,
                 user_id = user_id,
+                subject_id = session.subject_id,
                 subject = session.subject,
                 avg_focus = session.avg_focus,
                 start_time = session.start_time,
@@ -117,5 +119,79 @@ class StudyRepository(IStudy):
 
             db.delete(session)
             db.commit()
-        
+    
+     # 과목 조회
+    def get_subjects(self, user_id:str) -> list[Subject]:
+        with SessionLocal() as db:
+            subjects = (
+                db.query(SubjectDB)
+                .filter(SubjectDB.user_id == user_id)
+                .all()
+            )
 
+            if not subjects:
+                return None
+            
+        return [Subject(**row_to_dict(subject)) for subject in subjects]
+
+        
+    # 과목 추가
+    def save_subject(self, user_id:str, subject: Subject) -> Subject:
+        with SessionLocal() as db:
+            new_subject = SubjectDB(
+                id = subject.id,
+                user_id = subject.user_id,
+                subject_name = subject.subject_name,
+                created_at = subject.created_at
+            )
+            db.add(new_subject)
+            db.commit()
+            db.refresh(new_subject)
+        return Subject(**row_to_dict(new_subject))
+
+    # 과목 수정
+    def update_subject(self, user_id:str, subject: Subject) -> Subject:
+        with SessionLocal() as db:
+            new_subject = (
+                db.query(SubjectDB)
+                .filter(SubjectDB.user_id == user_id, SubjectDB.id == subject.id)
+                .first()
+            )
+
+            if not new_subject:
+                raise HTTPException(status_code = 422)
+            
+            new_subject.subject_name = subject.subject_name
+            db.add(new_subject)
+            db.commit()
+
+            return Subject(**row_to_dict(new_subject))
+
+    # 과목 삭제
+    def delete_subject(self, user_id:str, subject: Subject):
+        with SessionLocal() as db:
+            subject = (
+                db.query(SubjectDB)
+                .filter(SubjectDB.user_id == user_id, SubjectDB.id == subject.id)
+                .first()
+            )
+
+            if not subject:
+                return HTTPException(status_code = 422)
+
+            db.delete(subject)
+            db.commit()
+
+    # 과목명으로 과목 조회
+    def find_by_subject_name(self, user_id:str, subject_name:str) -> Subject:
+        with SessionLocal() as db:
+            subject = (
+                db.query(SubjectDB)
+                .filter(SubjectDB.user_id == user_id, SubjectDB.subject_name == subject_name)
+                .first()
+            )
+
+            if not subject:
+                raise HTTPException(status_code = 422)
+        
+        return Subject(**row_to_dict(subject))

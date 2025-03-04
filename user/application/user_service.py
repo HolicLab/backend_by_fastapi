@@ -9,7 +9,9 @@ from utils.crypto import Crypto
 from dependency_injector.wiring import inject, Provide
 from fastapi import Depends
 from common.auth import Role, create_access_token
+import pytz
 
+korea_timezone = pytz.timezone('Asia/Seoul')
 
 class UserService:
     # @inject 데커레이터를 명시해 주입받은 객체를 사용한다고 선언한다.
@@ -31,6 +33,7 @@ class UserService:
         password: str, 
         memo: str | None = None
     ):
+        now_korea = datetime.now(korea_timezone)
         _user = None        # 데이터베이스에서 찾은 유저 변수
 
         try:
@@ -42,15 +45,14 @@ class UserService:
         if _user:
             raise HTTPException(status_code=422)
 
-        now = datetime.now()
         user: User = User(
             id=self.ulid.generate(),
             name=name,
             email=email,
             password=self.crypto.encrypt(password),
             memo=memo,
-            created_at=now,
-            updated_at=now,
+            created_at=now_korea,
+            updated_at=now_korea,
         )
         self.user_repo.save(user)
 
@@ -67,13 +69,14 @@ class UserService:
             name: str | None = None,
             password: str | None = None,
     ):
+        now_korea = datetime.now(korea_timezone)
         user = self.user_repo.find_by_id(user_id)
 
         if name:
             user.name = name
         if password:
             user.password = self.crypto.encrypt(password)
-        user.updated_at = datetime.now()
+        user.updated_at = now_korea
 
         self.user_repo.update(user)
 

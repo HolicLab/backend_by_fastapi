@@ -5,7 +5,8 @@ from datetime import datetime
 class StudySession:
     id: str
     user_id: str
-    subject: str
+    subject_id: str | None
+    subject: str | None
     avg_focus: float | None
     start_time: str
     end_time: str | None
@@ -19,4 +20,11 @@ class StudyData:
     ppg_value: float
     focus_score: float
     time: str
+    created_at: datetime
+
+@dataclass
+class Subject:
+    id: str
+    user_id: str
+    subject_name: str
     created_at: datetime
