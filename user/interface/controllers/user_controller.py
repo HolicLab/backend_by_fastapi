@@ -110,3 +110,29 @@ def login(
 
     return {"access_token": access_token, "token_type": "bearer"}
 
+# PIN 요청 (휴대폰에서)
+class PinResponse(BaseModel):
+    pin: str
+    expires_at: datetime
+
+@router.post("/pin/request", response_model = PinResponse)
+@inject
+async def request_pin(
+    current_user: Annotated[CurrentUser, Depends(get_current_user)],
+    user_service: UserService = Depends(Provide[Container.user_service]),
+):
+    pin, expires_at = await user_service.create_pin(current_user.id)
+    return PinResponse(pin=pin, expires_at=expires_at)
+
+# PIN 로그인 (워치에서)
+class PinLoginRequest(BaseModel):
+    pin: str
+
+@router.post("/pin/login")
+@inject
+async def login_with_pin(
+    request: PinLoginRequest,
+    user_service: UserService = Depends(Provide[Container.user_service])
+):
+    access_token = await user_service.verify_pin_and_login(pin = request.pin)
+    return {"access_token": access_token, "token_type": "bearer"}

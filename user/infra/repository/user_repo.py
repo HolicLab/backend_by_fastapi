@@ -53,7 +53,7 @@ class UserRepository(IUserRepository):
             
             user.name = user_vo.name
             user.password = user_vo.password
-
+            
             db.add(user)
             db.commit()
 

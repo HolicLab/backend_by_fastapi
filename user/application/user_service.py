@@ -1,6 +1,7 @@
+import redis.asyncio as redis
 from fastapi import BackgroundTasks, HTTPException, Depends, status
 from ulid import ULID
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from user.domain.user import User
 from user.domain.repository.user_repo import IUserRepository
 from user.application.email_service import EmailService
@@ -10,6 +11,7 @@ from dependency_injector.wiring import inject, Provide
 from fastapi import Depends
 from common.auth import Role, create_access_token
 import pytz
+import secrets
 
 korea_timezone = pytz.timezone('Asia/Seoul')
 
@@ -18,12 +20,12 @@ class UserService:
     # 컨테이너에 직접 user_repo 팩토리를 선언해두었기 때문에 타입 선언만으로도 
     # UserService가 생성될 때 팩토리를 수행한 객체가 주입된다.
     @inject
-    def __init__(self, user_repo: IUserRepository, email_service: EmailService):
+    def __init__(self, user_repo: IUserRepository, email_service: EmailService, crypto: Crypto, redis: redis.Redis):
         self.user_repo = user_repo
         self.ulid = ULID()
         self.crypto = Crypto()
         self.email_service = email_service
-        
+        self.redis = redis
 
     def create_user(
         self, 
@@ -104,3 +106,61 @@ class UserService:
         )
 
         return access_token
+    
+    # PIN 생성, 저장 (hashed), 유효 시간 설정
+    async def create_pin(self, user_id: str) -> tuple[str, datetime]:
+        user = self.user_repo.find_by_id(user_id)
+        if not user:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+
+        expires_at = datetime.now(korea_timezone) + timedelta(minutes=2) 
+
+        while True:
+            pin = "".join([str(secrets.randbelow(10)) for _ in range(6)])
+            set_result = await self.redis.setnx(pin, f"{user_id}:{expires_at.timestamp()}")
+            if set_result:
+                await self.redis.expire(pin, 600)
+                break
+
+        # 디버깅 출력
+        data = await self.redis.get(pin)
+        print(f"Raw data: {data}")  
+        print(f"Decoded data: {data.decode('utf-8')}")  
+
+        return (pin, expires_at)
+
+    async def verify_pin_and_login(self, pin: str) -> str:
+        """PIN 검증 (Redis), JWT 생성, 명시적 만료 시간 확인."""
+
+        # Redis에서 PIN 정보 가져오기
+        data = await self.redis.get(pin)  # user_id:expires_at (str)
+        if not data:
+            raise HTTPException(status_code=404, detail="PIN not found")
+
+        # data(bytes)를 문자열로 디코딩
+        data_str = data.decode("utf-8")
+        print(f"utf-8 : {data_str}")
+        
+        if ":" not in data_str:
+            await self.redis.delete(pin)  # 잘못된 형식의 데이터 삭제
+            raise HTTPException(status_code=400, detail="Invalid PIN data format.")
+
+        # 🔹 `split(":", 1)` 사용하여 정확하게 분리
+        try:
+            user_id, expires_at_str = data_str.split(":", 1)  
+            expires_at = datetime.fromtimestamp(float(expires_at_str), korea_timezone)  # Unix timestamp 변환
+        except (ValueError, IndexError) as e:
+            await self.redis.delete(pin)  # 잘못된 데이터 삭제
+            raise HTTPException(status_code=400, detail=f"Invalid expiration time format: {str(e)}")
+
+        # 현재 시간이 만료 시간을 초과했는지 확인
+        if datetime.now(korea_timezone) > expires_at:
+            await self.redis.delete(pin)  # 만료된 PIN 삭제
+            raise HTTPException(status_code=410, detail="PIN expired")
+
+        # PIN 정보 삭제 (일회용)
+        await self.redis.delete(pin)
+
+        access_token = create_access_token(payload={"user_id": user_id}, role=Role.USER)
+        return access_token
+
