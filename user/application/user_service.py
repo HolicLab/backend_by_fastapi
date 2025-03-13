@@ -23,11 +23,11 @@ class UserService:
     def __init__(self, user_repo: IUserRepository, email_service: EmailService, crypto: Crypto, redis: redis.Redis):
         self.user_repo = user_repo
         self.ulid = ULID()
-        self.crypto = Crypto()
+        self.crypto = crypto
         self.email_service = email_service
         self.redis = redis
 
-    def create_user(
+    async def create_user(
         self, 
         # background_tasks: BackgroundTasks, 
         name: str, 
@@ -39,7 +39,7 @@ class UserService:
         _user = None        # 데이터베이스에서 찾은 유저 변수
 
         try:
-            _user = self.user_repo.find_by_email(email)
+            _user = await self.user_repo.find_by_email(email)
         except HTTPException as e:
             if e.status_code != 422:
                 raise e
@@ -51,56 +51,49 @@ class UserService:
             id=self.ulid.generate(),
             name=name,
             email=email,
-            password=self.crypto.encrypt(password),
+            password=await self.crypto.encrypt(password),
             memo=memo,
             created_at=now_korea,
             updated_at=now_korea,
         )
-        self.user_repo.save(user)
+        await self.user_repo.save(user)
 
-        # SendWelcomeEmailTask().run(user.email)
-        
-        # background_tasks.add_task(
-        #     self.email_service.send_email, user.email
-        # )
         return user
     
-    def update_user(
+    async def update_user(
             self,
             user_id: str,
             name: str | None = None,
             password: str | None = None,
     ):
         now_korea = datetime.now(korea_timezone)
-        user = self.user_repo.find_by_id(user_id)
+        user = await self.user_repo.find_by_id(user_id)
 
         if name:
             user.name = name
         if password:
-            user.password = self.crypto.encrypt(password)
+            user.password = await self.crypto.encrypt(password)
         user.updated_at = now_korea
 
-        self.user_repo.update(user)
+        await self.user_repo.update(user)
 
         return user
     
-    def get_users(self, page: int, items_per_page: int) -> tuple[int, list[User]]:
-        users = self.user_repo.get_users(page, items_per_page)
-        
-        return users
-    
-    def delete_user(self, user_id: str):
-        self.user_repo.delete(user_id)
+    async def get_users(self, page: int, items_per_page: int) -> tuple[int, list[User]]:
+        return await self.user_repo.get_users(page, items_per_page)
 
-    def login(self, email: str, password: str):
+    async def delete_user(self, user_id: str):
+        await self.user_repo.delete(user_id)
+
+    async def login(self, email: str, password: str):
         # 가입한 유저를 찾는다.
-        user = self.user_repo.find_by_email(email)
+        user = await self.user_repo.find_by_email(email)
 
         # 전달받은 패스워드와 데이터베이스에 저장된 패스워드와 비교해 유효성 검증
-        if not self.crypto.verify(password, user.password):
+        if not await self.crypto.verify(password, user.password):
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
         
-        access_token = create_access_token(
+        access_token = await create_access_token(
             payload={"user_id": user.id},
             role=Role.USER,
         )
@@ -109,7 +102,7 @@ class UserService:
     
     # PIN 생성, 저장 (hashed), 유효 시간 설정
     async def create_pin(self, user_id: str) -> tuple[str, datetime]:
-        user = self.user_repo.find_by_id(user_id)
+        user = await self.user_repo.find_by_id(user_id)
         if not user:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
 
@@ -161,6 +154,6 @@ class UserService:
         # PIN 정보 삭제 (일회용)
         await self.redis.delete(pin)
 
-        access_token = create_access_token(payload={"user_id": user_id}, role=Role.USER)
+        access_token = await create_access_token(payload={"user_id": user_id}, role=Role.USER)
         return access_token
 

@@ -1,4 +1,4 @@
-from fastapi import BackgroundTasks, APIRouter, Depends
+from fastapi import APIRouter, Depends
 from fastapi.security import OAuth2PasswordRequestForm
 from pydantic import BaseModel, EmailStr, Field
 from typing import Annotated
@@ -6,7 +6,6 @@ from dependency_injector.wiring import inject, Provide
 from containers import Container
 from datetime import datetime
 from common.auth import CurrentUser, get_current_user
-# from common.auth import get_admin_user
 
 from user.application.user_service import UserService
 
@@ -28,15 +27,12 @@ class UserResponse(BaseModel):
 
 @router.post("", status_code=201)     # 201 Created : 요청이 성공적
 @inject
-def create_user(
+async def create_user(
     user: CreateUserBody,
-    # background_tasks: BackgroundTasks,
     # 의존성 주입 : UserService객체를 생성하지 않고 UserService 객체를 전달받도록 할 수 있다.
     user_service: UserService = Depends(Provide[Container.user_service]),
-    # user_service: UserService = Depends(Provide["user_service"])
 ) -> UserResponse:
-    created_user = user_service.create_user(
-        # background_tasks=background_tasks,
+    created_user = await user_service.create_user(
         name=user.name,
         email=user.email,
         password=user.password
@@ -51,13 +47,13 @@ class UpdateUserBody(BaseModel):
 
 @router.put("", response_model=UserResponse)
 @inject
-def update_user(
+async def update_user(
     # get_current_user의 수행 결과를 주입받는다. 토큰에 들어있는 유저의 ID를 사용
     current_user: Annotated[CurrentUser, Depends(get_current_user)],
     body: UpdateUserBody,
     user_service: UserService = Depends(Provide[Container.user_service]),
 ):
-    user = user_service.update_user(
+    user = await user_service.update_user(
         user_id=current_user.id,
         name=body.name,
         password=body.password,
@@ -72,14 +68,12 @@ class GetUsersResponse(BaseModel):
 
 @router.get("")
 @inject
-def get_users(
+async def get_users(
     page: int = 1,
     items_per_page: int = 10,
-    # get_admin_user 함수의 결과를 주입해 어드민용 토큰을 검사한다.
-    # current_user: CurrentUser = Depends(get_admin_user),
     user_service: UserService = Depends(Provide[Container.user_service])
 ) -> GetUsersResponse:
-    total_count, users = user_service.get_users(page, items_per_page)
+    total_count, users = await user_service.get_users(page, items_per_page)
 
     return {
         "total_count": total_count,
@@ -90,20 +84,20 @@ def get_users(
 # 204 No Content : 요청이 성공했으나 클라이언트가 현재 페이지에서 벗어나지 않아도 된다는 것을 나타냄
 @router.delete("", status_code=204)
 @inject
-def delete_user(
+async def delete_user(
     current_user: Annotated[CurrentUser, Depends(get_current_user)],
     user_service: UserService = Depends(Provide[Container.user_service]),
 ):
-    user_service.delete_user(current_user.id)
+    await user_service.delete_user(current_user.id)
 
 @router.post("/login")
 @inject
-def login(
+async def login(
     # FastAPI가 제공하는 OAuth2PasswordRequestForm 클래스를 이용해 유저의 아이디와 패스워드를 전달받는다.
     form_data: Annotated[OAuth2PasswordRequestForm, Depends()],
     user_service: UserService = Depends(Provide[Container.user_service]),
 ):
-    access_token = user_service.login(
+    access_token = await user_service.login(
         email=form_data.username,
         password=form_data.password,
     )

@@ -6,11 +6,11 @@ from user.domain.user import User
 # metaclass=ABCMeta를 사용하여 IUserRepository 클래스가 추상 클래스임을 선언
 class IUserRepository(metaclass=ABCMeta):
     @abstractmethod
-    def save(self, user:User):
+    async def save(self, user:User):
         raise NotImplementedError
     
     @abstractmethod
-    def find_by_email(self, email: str) -> User:
+    async def find_by_email(self, email: str) -> User:
         """
         이메일로 유저를 검색한다.
         검색한 유저가 없을 경우 422 에러를 발생시킨다.
@@ -18,19 +18,19 @@ class IUserRepository(metaclass=ABCMeta):
         raise NotImplementedError
 
     @abstractmethod
-    def find_by_id(self, id: str) -> User:
+    async def find_by_id(self, id: str) -> User:
         raise NotImplementedError
     
     @abstractmethod
-    def update(self, user: User):
+    async def update(self, user: User):
         raise NotImplementedError
     
     @abstractmethod
-    def get_users(self, page: int, items_per_page: int) -> tuple[int, list[User]]:
+    async def get_users(self, page: int, items_per_page: int) -> tuple[int, list[User]]:
         raise NotImplementedError
     
     @abstractmethod
-    def delete(self, id: str):
+    async def delete(self, id: str):
         raise NotImplementedError
     
     

@@ -4,15 +4,15 @@ from common.auth import CurrentUser, decode_access_token
 from context_vars import user_context
 from common.logger import logger
 
-def create_middlewares(app: FastAPI):
+async def create_middlewares(app: FastAPI):
     @app.middleware("http")
-    def get_current_user_middleware(request: Request, call_next):
+    async def get_current_user_middleware(request: Request, call_next):
         authorization = request.headers.get("Authorization")
         if authorization:
             splits = authorization.split(" ")
             if splits[0] == "Bearer":
                 token = splits[1]
-                payload = decode_access_token(token)
+                payload = await decode_access_token(token)
                 user_id = payload.get("user_id")
                 user_role = payload.get("role")
 

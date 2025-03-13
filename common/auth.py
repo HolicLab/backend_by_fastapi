@@ -19,7 +19,7 @@ class Role(StrEnum):
     ADMIN = "ADMIN"
     USER = "USER"
 
-def create_access_token(
+async def create_access_token(
     payload: dict,
     role: Role,
     expires_delta: timedelta = timedelta(hours=6),
@@ -35,7 +35,7 @@ def create_access_token(
 
     return encoded_jwt
 
-def decode_access_token(token: str):
+async def decode_access_token(token: str):
     try:
         # 토큰을 보안 키와 암호화 알고리즘으로 복호화
         return jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])    
@@ -56,8 +56,8 @@ class CurrentUser:
         return f"{self.id}({self.role})"
 
 # oauth2_scheme을 통해 얻은 토큰을 복호화한 페이로드에서 현재 유저의 정보를 구한다.
-def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
-    payload = decode_access_token(token)
+async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
+    payload = await decode_access_token(token)
 
     user_id = payload.get("user_id")
     role = payload.get("role")
