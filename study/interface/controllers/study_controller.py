@@ -75,14 +75,14 @@ class DataResponse(BaseModel):
     session_id: str
     ppg_value: float
     focus_score: float
-    time: str
+    time: datetime
     created_at: datetime
 
 # 개별 데이터 항목에 대한 내부 모델 (단일 데이터)
 class SingleData(BaseModel):
     ppg_value: float
     focus_score: float
-    time: str = Field(min_length = 1, max_length = 36)
+    time: datetime
 
 # 데이터 생성 요청에 대한 파이단틱 모델 (리스트 허용)
 class CreateDataResponse(BaseModel):

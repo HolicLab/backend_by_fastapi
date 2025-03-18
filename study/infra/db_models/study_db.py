@@ -1,6 +1,6 @@
 from database import Base
 from datetime import datetime
-from sqlalchemy import String, DateTime, Column, ForeignKey, Float
+from sqlalchemy import String, DateTime, Column, ForeignKey, Float, TIMESTAMP
 from sqlalchemy.orm import relationship
 # from user.infra.db_models.user import User
 import pytz
@@ -36,8 +36,8 @@ class StudyData(Base):
     session_id = Column(String(36), ForeignKey("StudySession.id", ondelete="CASCADE"), nullable=False)
     ppg_value = Column(Float(asdecimal=True))
     focus_score = Column(Float(asdecimal=True))
-    time = Column(String(30))
-    created_at = Column(DateTime(6), nullable=False, default=get_korea_now)
+    time = Column(TIMESTAMP(6))
+    created_at = Column(TIMESTAMP(6), nullable=False, default=get_korea_now)
 
     study_session = relationship("StudySession", back_populates="study_data")
 

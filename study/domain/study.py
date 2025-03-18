@@ -19,7 +19,7 @@ class StudyData:
     session_id: str
     ppg_value: float
     focus_score: float
-    time: str
+    time: datetime
     created_at: datetime
 
 @dataclass
