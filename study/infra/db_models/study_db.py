@@ -19,6 +19,7 @@ class StudySession(Base):
     subject_id = Column(String(36), ForeignKey("Subject.id", ondelete="SET NULL"), nullable=True)
     subject = Column(String(10), nullable=True)
     avg_focus = Column(Float(asdecimal=True))
+    ai_avg_focus = Column(Float(asdecimal=True))
     start_time = Column(String(30))
     end_time = Column(String(30))
     created_at = Column(DateTime(6), nullable=False, default=get_korea_now)

@@ -8,6 +8,7 @@ class StudySession:
     subject_id: str | None
     subject: str | None
     avg_focus: float | None
+    ai_avg_focus: float | None
     start_time: str
     end_time: str | None
     created_at: datetime

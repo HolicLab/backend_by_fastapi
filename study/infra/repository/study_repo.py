@@ -28,6 +28,39 @@ class StudyRepository(IStudy):
             sessions = result.scalars().all()
         
         return total_count, [StudySession(**row_to_dict(session)) for session in sessions]
+    
+    async def get_session_dates(self, user_id:str) -> tuple[int, list[str]]:
+        async with AsyncSessionLocal() as db:
+            query = (
+                select(func.date(Session_db.created_at))
+                .where(Session_db.user_id == user_id)
+            )
+            
+            result = await db.execute(query)
+            dates = result.scalars().all()
+            
+            res_date = []
+            for date in dates:
+                if str(date) in res_date:
+                    continue
+                res_date.append(str(date))
+        
+        return len(res_date), list(res_date)
+
+    async def get_sessions_by_date(self, user_id: str, date: str) -> tuple[int, list[StudySession]]:
+        async with AsyncSessionLocal() as db:
+            query = (
+                select(Session_db)
+                .where(
+                    Session_db.user_id == user_id,
+                    func.date(Session_db.created_at) == date
+                )
+            )
+            
+            result = await db.execute(query)
+            sessions = result.scalars().all()
+        
+        return len(sessions), [StudySession(**row_to_dict(session)) for session in sessions]
 
     # StudyData db에서 세션 id에 해당하는 집중도 데이터 조회
     async def find_datas_by_session_id(self, user_id: str, session_id: str) -> list[StudyData]:
@@ -66,6 +99,7 @@ class StudyRepository(IStudy):
                 subject_id = session.subject_id,
                 subject = session.subject,
                 avg_focus = session.avg_focus,
+                ai_avg_focus = session.ai_avg_focus,
                 start_time = session.start_time,
                 end_time = session.end_time,
                 created_at = session.created_at,
@@ -88,6 +122,7 @@ class StudyRepository(IStudy):
             
             new_session.updated_at = session.updated_at
             new_session.avg_focus = session.avg_focus
+            new_session.ai_avg_focus = session.ai_avg_focus
             new_session.end_time = session.end_time
 
             await db.commit()

@@ -19,6 +19,7 @@ class SessionResponse(BaseModel):
     subject_id: str | None
     subject: str | None
     avg_focus: float | None
+    ai_avg_focus: float | None
     start_time: str
     end_time: str | None
     created_at: datetime
@@ -50,6 +51,7 @@ async def create_session(
 class CompleteSessionResponse(BaseModel):
     id: str = Field(min_length=1, max_length=36)
     avg_focus : float | None = None
+    ai_avg_focus: float | None = None
     end_time: str = Field(min_length=1, max_length=30)
 
 # POST /study/session/end (학습 세션 종료)
@@ -65,6 +67,7 @@ async def complete_session(
         user_id = current_user.id,
         end_time = body.end_time,
         avg_focus = body.avg_focus,
+        ai_avg_focus = body.ai_avg_focus
     )
     response = asdict(session)
     return response
@@ -136,6 +139,50 @@ async def get_sessions(
         "page" : page,
         "sessions" : res_sessions,
     }
+
+class GetSessionDatesResponse(BaseModel):
+    total_count: int
+    dates: list[str]
+
+@router.get("/session/dates", response_model=GetSessionDatesResponse)    
+@inject
+async def get_session_dates(
+    current_user: Annotated[CurrentUser, Depends(get_current_user)],
+    study_service: StudyService = Depends(Provide(Container.study_service))
+):
+    total_count, dates = await study_service.get_session_dates(user_id=current_user.id)
+    
+    if not dates:
+        return {"total_count": 0, "dates": []}
+    
+    return {"total_count": total_count, "dates": dates}
+    
+    
+class GetSessionResponseByDate(BaseModel):
+    total_count: int
+    sessions: list[SessionResponse]
+    
+@router.get("/session/{date}", response_model=GetSessionResponseByDate)
+@inject
+async def get_sessions_by_date(
+    date: str,
+    current_user: Annotated[CurrentUser, Depends(get_current_user)],
+    study_service: StudyService = Depends(Provide[Container.study_service])
+):
+    total_count, sessions = await study_service.get_sessions_by_date(
+        user_id = current_user.id,
+        date = date
+    )
+    
+    if not sessions:
+        return {"total_count": 0, "sessions": []}
+    
+    res_session = []
+    for session in sessions:
+        session_dict = asdict(session)
+        res_session.append(session)
+    
+    return {"total_count": total_count, "sessions": res_session}
 
 # 데이터 get 요청 응답 파이단틱 모델
 class GetDataResponse(BaseModel):

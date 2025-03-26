@@ -5,6 +5,14 @@ class IStudy(metaclass=ABCMeta):
     @abstractmethod
     async def get_sessions(self, user_id: str, page: int, items_per_page:int) -> tuple[int, list[StudySession]]:
         raise NotImplementedError
+    
+    @abstractmethod
+    async def get_session_dates(self, user_id: str) -> tuple[int, list[str]]:
+        raise NotImplementedError
+    
+    @abstractmethod
+    async def get_sessions_by_date(self, user_id: str, date: str) -> tuple[int, list[StudySession]]:
+        raise NotImplementedError
 
     @abstractmethod
     async def find_datas_by_session_id(self, user_id: str, session_id: str) -> list[StudyData]:

@@ -28,6 +28,21 @@ class StudyService:
             items_per_page = items_per_page,
         )
     
+    # 사용자의 학습 세션들의 날짜만 가져온다
+    async def get_session_dates(self, user_id: str) -> tuple[int, list[str]]:
+        return await self.study_repo.get_session_dates(user_id = user_id)
+    
+    # 해당 날짜의 세션을 가져온다    
+    async def get_sessions_by_date(
+        self,
+        user_id: str,
+        date: str
+    ) -> tuple[int, list[StudySession]]:
+        return await self.study_repo.get_sessions_by_date(
+            user_id = user_id,
+            date = date
+        )
+    
     # 사용자의 특정 세션의 세부데이터를 가져온다.
     async def get_datas(self, user_id: str, session_id: str) -> list[StudyData]:
         return await self.study_repo.find_datas_by_session_id(user_id = user_id, session_id = session_id)    
@@ -49,6 +64,7 @@ class StudyService:
             subject_id = subject.id,
             subject = subject.subject_name,
             avg_focus = None,
+            ai_avg_focus = None,
             start_time = start_time,
             end_time = None,
             created_at = now_korea,
@@ -66,12 +82,14 @@ class StudyService:
         user_id: str,
         end_time: str,
         avg_focus: Optional[float] = None,
+        ai_avg_focus: Optional[float] = None,
     ):
         now_korea = datetime.now(korea_timezone)
         session = await self.study_repo.find_session_by_id(user_id = user_id, session_id = id)
 
         session.updated_at = now_korea
         session.avg_focus = avg_focus
+        session.ai_avg_focus = ai_avg_focus
         session.end_time = end_time
 
         await self.study_repo.update_session(user_id = user_id, session = session)
